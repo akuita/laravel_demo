@@ -1,26 +1,4 @@
-<?php
-
-namespace App\OAuthGrants;
-
-use DateInterval;
-use Exception;
-use Laravel\Passport\Bridge\User;
-use League\OAuth2\Server\Entities\UserEntityInterface;
-use League\OAuth2\Server\Exception\OAuthServerException;
-use League\OAuth2\Server\Grant\AbstractGrant;
-use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
-use League\OAuth2\Server\Repositories\UserRepositoryInterface;
-use League\OAuth2\Server\RequestAccessTokenEvent;
-use League\OAuth2\Server\RequestEvent;
-use League\OAuth2\Server\RequestRefreshTokenEvent;
-use League\OAuth2\Server\ResponseTypes\ResponseTypeInterface;
-use Psr\Http\Message\ServerRequestInterface;
-
-class VerifiedEmailGrant extends AbstractGrant
-{
-    use EventFireHelper;
-
-    public function __construct(UserRepositoryInterface $userRepository, RefreshTokenRepositoryInterface $refreshTokenRepository)
+ function __construct(UserRepositoryInterface $userRepository, RefreshTokenRepositoryInterface $refreshTokenRepository)
     {
         $this->setUserRepository($userRepository);
         $this->setRefreshTokenRepository($refreshTokenRepository);
@@ -130,3 +108,26 @@ class VerifiedEmailGrant extends AbstractGrant
         return 'verified_email_grant';
     }
 }
+<?php
+
+namespace App\OAuthGrants;
+
+use DateInterval;
+use Exception;
+use Laravel\Passport\Bridge\User;
+use League\OAuth2\Server\Entities\UserEntityInterface;
+use League\OAuth2\Server\Exception\OAuthServerException;
+use League\OAuth2\Server\Grant\AbstractGrant;
+use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
+use League\OAuth2\Server\Repositories\UserRepositoryInterface;
+use League\OAuth2\Server\RequestAccessTokenEvent;
+use League\OAuth2\Server\RequestEvent;
+use League\OAuth2\Server\RequestRefreshTokenEvent;
+use League\OAuth2\Server\ResponseTypes\ResponseTypeInterface;
+use Psr\Http\Message\ServerRequestInterface;
+
+class VerifiedEmailGrant extends AbstractGrant
+{
+    use EventFireHelper;
+
+    public

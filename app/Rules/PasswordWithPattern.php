@@ -1,3 +1,16 @@
+.password_pattern').'/', $value);
+    }
+
+    /**
+     * Get the validation error message.
+     *
+     * @return string
+     */
+    public function message()
+    {
+        return ':attribute must be more than 8 characters long, should contain at-least 1 Uppercase, 1 Lowercase, 1 Numeric and 1 special character.';
+    }
+}
 <?php
 
 namespace App\Rules;
@@ -25,16 +38,4 @@ class PasswordWithPattern implements Rule
      */
     public function passes($attribute, $value)
     {
-        return preg_match('/'.config('auth.password_pattern').'/', $value);
-    }
-
-    /**
-     * Get the validation error message.
-     *
-     * @return string
-     */
-    public function message()
-    {
-        return ':attribute must be more than 8 characters long, should contain at-least 1 Uppercase, 1 Lowercase, 1 Numeric and 1 special character.';
-    }
-}
+        return preg_match('/'.config('auth

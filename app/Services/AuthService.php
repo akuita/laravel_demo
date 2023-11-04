@@ -1,22 +1,4 @@
-<?php
 
-namespace App\Services;
-
-use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Support\Facades\Hash;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-
-class AuthService extends BaseService
-{
-    public function __construct()
-    {
-    }
-
-    public function resetPassword(array $input, string $provider)
-    {
-        $model = BaseService::getAuthModelFromProvider($provider);
 
         $authUser = $model::where('email', '=', $input['email'])->first();
 
@@ -88,3 +70,22 @@ class AuthService extends BaseService
         return ['success' => true];
     }
 }
+<?php
+
+namespace App\Services;
+
+use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Hash;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+
+class AuthService extends BaseService
+{
+    public function __construct()
+    {
+    }
+
+    public function resetPassword(array $input, string $provider)
+    {
+        $model = BaseService::getAuthModelFromProvider($provider);

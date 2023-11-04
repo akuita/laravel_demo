@@ -1,3 +1,6 @@
+ |
+
+<!--- END_TF_DOCS --->
 # terraform-aws-chatbot-slack
 
 Terraform module setting up Slack notifications from AWS using AWS Chatbot.
@@ -35,6 +38,4 @@ Find instructions to deploy this on: https://www.obytes.com/blog/sending-notific
 | Name | Description |
 |------|-------------|
 | configuration\_arn | The ARN of the Chatbot Slack configuration |
-| stack\_id | The unique identifier for the stack. |
-
-<!--- END_TF_DOCS --->
+| stack\_id | The unique identifier for the stack.

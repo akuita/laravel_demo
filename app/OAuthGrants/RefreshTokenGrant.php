@@ -1,9 +1,4 @@
-<?php
-
-namespace App\OAuthGrants;
-
-use DateInterval;
-use League\OAuth2\Server\Exception\OAuthServerException;
+\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\Grant\RefreshTokenGrant as BaseRefreshTokenGrant;
 use League\OAuth2\Server\RequestAccessTokenEvent;
 use League\OAuth2\Server\RequestEvent;
@@ -76,3 +71,9 @@ class RefreshTokenGrant extends BaseRefreshTokenGrant
         }
     }
 }
+<?php
+
+namespace App\OAuthGrants;
+
+use DateInterval;
+use League

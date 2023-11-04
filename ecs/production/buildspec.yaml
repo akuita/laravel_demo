@@ -1,9 +1,4 @@
-version: 0.2
-env:
-  variables:
-    IMAGE_NAME: "gtmi_demo_production"
-  parameter-store:
-    docker_username: "/gtmi_demo_production/docker_username"
+docker_username"
     docker_password: "/gtmi_demo_production/docker_password"
     subnet: "/gtmi_demo_production/subnet"
     security_group: "/gtmi_demo_production/security_group"
@@ -54,3 +49,9 @@ artifacts:
     - imageDetail.json
     - ecs/production/taskdef.json
     - ecs/production/appspec.yaml
+version: 0.2
+env:
+  variables:
+    IMAGE_NAME: "gtmi_demo_production"
+  parameter-store:
+    docker_username: "/gtmi_demo_production/

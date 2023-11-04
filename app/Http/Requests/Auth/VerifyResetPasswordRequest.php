@@ -1,4 +1,5 @@
-<?php
+,
+            'p<?php
 
 namespace App\Http\Requests\Auth;
 
@@ -24,8 +25,7 @@ class VerifyResetPasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'reset_token' => 'required',
-            'password' => 'required|required|password_with_pattern|confirmed',
+            'reset_token' => 'required'assword' => 'required|required|password_with_pattern|confirmed',
             'password_confirmation' => 'required',
         ];
     }

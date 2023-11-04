@@ -1,3 +1,17 @@
+assword_client');
+            $table->boolean('revoked');
+            $table->timestamps();
+        });
+    }
+
+/**
+ * Reverse the migrations.
+ */
+public function down(): void
+{
+    Schema::dropIfExists('oauth_clients');
+}
+};
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -19,17 +33,4 @@ return new class extends Migration
             $table->string('provider')->nullable();
             $table->text('redirect');
             $table->boolean('personal_access_client');
-            $table->boolean('password_client');
-            $table->boolean('revoked');
-            $table->timestamps();
-        });
-    }
-
-/**
- * Reverse the migrations.
- */
-public function down(): void
-{
-    Schema::dropIfExists('oauth_clients');
-}
-};
+            $table->boolean('p

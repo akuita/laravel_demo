@@ -1,3 +1,7 @@
+efault => $value,
+        };
+    }
+}
 <?php
 
 namespace App\EloquentBuilders;
@@ -112,7 +116,4 @@ class FilterBuilder extends Builder
             self::OPERATOR_START_WITH => '%'.$value,
             self::OPERATOR_END_WITH => $value.'%',
             self::OPERATOR_CONTAINS => '%'.$value.'%',
-            default => $value,
-        };
-    }
-}
+            d

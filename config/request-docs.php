@@ -131,7 +131,8 @@ return [
                     'application/json' => [
                         'schema' => [
                             'type' => 'object',
-                        ],
+                
+        ],
                     ],
                 ],
             ],

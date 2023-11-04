@@ -1,3 +1,23 @@
+fter($currentDate);
+        });
+
+        Validator::extend('hiragana', function ($attribute, $value) {
+            return (new Hiragana())->passes($attribute, $value);
+        });
+
+        Validator::extend('katakana', function ($attribute, $value) {
+            return (new Katakana())->passes($attribute, $value);
+        });
+
+        Validator::extend('phone_number', function ($attribute, $value) {
+            return (new PhoneNumber())->passes($attribute, $value);
+        });
+
+        Validator::extend('password_with_pattern', function ($attribute, $value) {
+            return (new PasswordWithPattern())->passes($attribute, $value);
+        });
+    }
+}
 <?php
 
 namespace App\Providers;
@@ -38,23 +58,4 @@ class ValidatorServiceProvider extends ServiceProvider
         Validator::extend('in_future', function ($attribute, $value, $parameters) {
             $currentDate = data_get($parameters, '0') == 'datetime' ? Carbon::now() : Carbon::today();
 
-            return Carbon::parse($value)->isAfter($currentDate);
-        });
-
-        Validator::extend('hiragana', function ($attribute, $value) {
-            return (new Hiragana())->passes($attribute, $value);
-        });
-
-        Validator::extend('katakana', function ($attribute, $value) {
-            return (new Katakana())->passes($attribute, $value);
-        });
-
-        Validator::extend('phone_number', function ($attribute, $value) {
-            return (new PhoneNumber())->passes($attribute, $value);
-        });
-
-        Validator::extend('password_with_pattern', function ($attribute, $value) {
-            return (new PasswordWithPattern())->passes($attribute, $value);
-        });
-    }
-}
+            return Carbon::parse($value)->isA

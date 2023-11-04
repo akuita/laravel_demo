@@ -1,4 +1,4 @@
-<?php
+rmation T<?php
 
 return [
 
@@ -94,7 +94,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Password Confirmation Timeout
+    | Password Confiimeout
     |--------------------------------------------------------------------------
     |
     | Here you may define the amount of seconds before a password confirmation

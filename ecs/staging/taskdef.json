@@ -1,3 +1,14 @@
+tion": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "gtmi_demo_staging_ecs_web",
+                    "awslogs-region": "ap-northeast-1",
+                    "awslogs-stream-prefix": "laravel"
+                }
+            }
+        }
+    ]
+}
 {
     "family": "laravel",
     "networkMode": "awsvpc",
@@ -60,14 +71,4 @@
                     "valueFrom": "arn:aws:ssm:ap-northeast-1:677804650362:parameter/gtmi_demo_staging/app_key"
                   }
             ],
-            "logConfiguration": {
-                "logDriver": "awslogs",
-                "options": {
-                    "awslogs-group": "gtmi_demo_staging_ecs_web",
-                    "awslogs-region": "ap-northeast-1",
-                    "awslogs-stream-prefix": "laravel"
-                }
-            }
-        }
-    ]
-}
+            "logConfigura

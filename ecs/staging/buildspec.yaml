@@ -1,4 +1,4 @@
-version: 0.2
+build --tarversion: 0.2
 env:
   variables:
     IMAGE_NAME: "gtmi_demo_staging"
@@ -27,7 +27,7 @@ phases:
   build:
     commands:
       - echo --- Building container ---
-      - docker build --target laravel --cache-from $URI:laravel -f ./docker/staging/Dockerfile --build-arg LARAVEL_ENV_ENCRYPTION_KEY_ARG=${master_key} --tag $IMAGE_NAME:laravel .
+      - docker get laravel --cache-from $URI:laravel -f ./docker/staging/Dockerfile --build-arg LARAVEL_ENV_ENCRYPTION_KEY_ARG=${master_key} --tag $IMAGE_NAME:laravel .
       - docker tag $IMAGE_NAME:laravel $URI:laravel
       - docker build --cache-from $URI:laravel --cache-from $URI:latest -f ./docker/staging/Dockerfile --build-arg LARAVEL_ENV_ENCRYPTION_KEY_ARG=${master_key} --tag $IMAGE_NAME:latest .
       - docker tag $IMAGE_NAME:latest $URI:latest

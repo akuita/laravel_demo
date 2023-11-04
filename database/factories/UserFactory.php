@@ -1,3 +1,9 @@
+que(),
+            'email' => fake()->unique()->safeEmail,
+            'password' => 'JiteraPassword@1234',
+        ];
+    }
+}
 <?php
 
 namespace Database\Factories;
@@ -12,9 +18,4 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->unique(),
-            'email' => fake()->unique()->safeEmail,
-            'password' => 'JiteraPassword@1234',
-        ];
-    }
-}
+            'name' => fake()->uni

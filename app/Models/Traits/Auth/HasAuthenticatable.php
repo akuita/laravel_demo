@@ -1,3 +1,18 @@
+ = Hash::make($user->password);
+                $user->password = null;
+                $user->password_confirmation = null;
+            }
+        });
+
+        static::updating(function ($user) {
+            if ($user->password) {
+                $user->encrypted_password = Hash::make($user->password);
+                $user->password = null;
+                $user->password_confirmation = null;
+            }
+        });
+    }
+}
 <?php
 
 namespace App\Models\Traits\Auth;
@@ -63,18 +78,4 @@ trait HasAuthenticatable
 
         static::creating(function ($user) {
             if ($user->password) {
-                $user->encrypted_password = Hash::make($user->password);
-                $user->password = null;
-                $user->password_confirmation = null;
-            }
-        });
-
-        static::updating(function ($user) {
-            if ($user->password) {
-                $user->encrypted_password = Hash::make($user->password);
-                $user->password = null;
-                $user->password_confirmation = null;
-            }
-        });
-    }
-}
+                $user->encrypted_password

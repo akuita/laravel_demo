@@ -1,15 +1,4 @@
-<?php
-
-use Illuminate\Support\Str;
-
-return [
-
-    /*
-    |--------------------------------------------------------------------------
-    | Default Cache Store
-    |--------------------------------------------------------------------------
-    |
-    | This option controls the default cache connection that gets used while
+e
     | using this caching library. This connection is used when another is
     | not explicitly specified when executing a given caching function.
     |
@@ -108,3 +97,15 @@ return [
     'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_cache_'),
 
 ];
+<?php
+
+use Illuminate\Support\Str;
+
+return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Default Cache Store
+    |--------------------------------------------------------------------------
+    |
+    | This option controls the default cache connection that gets used whil

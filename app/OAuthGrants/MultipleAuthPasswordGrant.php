@@ -1,20 +1,4 @@
-<?php
-
-namespace App\OAuthGrants;
-
-use DateInterval;
-use Illuminate\Support\Facades\Hash;
-use Laravel\Passport\Bridge\User;
-use League\OAuth2\Server\Entities\ClientEntityInterface;
-use League\OAuth2\Server\Entities\UserEntityInterface;
-use League\OAuth2\Server\Exception\OAuthServerException;
-use League\OAuth2\Server\Grant\PasswordGrant;
-use League\OAuth2\Server\RequestAccessTokenEvent;
-use League\OAuth2\Server\RequestEvent;
-use League\OAuth2\Server\RequestRefreshTokenEvent;
-use League\OAuth2\Server\ResponseTypes\ResponseTypeInterface;
-use Psr\Http\Message\ServerRequestInterface;
-use RuntimeException;
+untimeException;
 
 class MultipleAuthPasswordGrant extends PasswordGrant
 {
@@ -158,3 +142,20 @@ class MultipleAuthPasswordGrant extends PasswordGrant
         return new User($user->getAuthIdentifier());
     }
 }
+<?php
+
+namespace App\OAuthGrants;
+
+use DateInterval;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Passport\Bridge\User;
+use League\OAuth2\Server\Entities\ClientEntityInterface;
+use League\OAuth2\Server\Entities\UserEntityInterface;
+use League\OAuth2\Server\Exception\OAuthServerException;
+use League\OAuth2\Server\Grant\PasswordGrant;
+use League\OAuth2\Server\RequestAccessTokenEvent;
+use League\OAuth2\Server\RequestEvent;
+use League\OAuth2\Server\RequestRefreshTokenEvent;
+use League\OAuth2\Server\ResponseTypes\ResponseTypeInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use R

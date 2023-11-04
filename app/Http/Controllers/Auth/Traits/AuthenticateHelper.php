@@ -1,4 +1,4 @@
-<?php
+Request($request, <?php
 
 namespace App\Http\Controllers\Auth\Traits;
 
@@ -15,7 +15,7 @@ trait AuthenticateHelper
 
         return $this->withErrorHandling(function () use ($request) {
             return $this->convertResponse(
-                $this->server->respondToAccessTokenRequest($request, new Psr7Response)
+                $this->server->respondToAccessTokennew Psr7Response)
             );
         });
     }

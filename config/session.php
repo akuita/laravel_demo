@@ -1,4 +1,8 @@
-<?php
+ION'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Session Database <?php
 
 use Illuminate\Support\Str;
 
@@ -72,11 +76,7 @@ return [
     |
     */
 
-    'connection' => env('SESSION_CONNECTION'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Session Database Table
+    'connection' => env('SESSION_CONNECTTable
     |--------------------------------------------------------------------------
     |
     | When using the "database" session driver, you may specify the table we

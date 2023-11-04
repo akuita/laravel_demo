@@ -1,4 +1,4 @@
-<?php
+guard =<?php
 
 namespace App\Notifications\Auth;
 
@@ -36,7 +36,7 @@ class UnlockEmailNotification extends ResetPassword implements ShouldQueue
      */
     protected function resetUrl($notifiable)
     {
-        $guard = $notifiable->getTable();
+        $ $notifiable->getTable();
 
         return config("auth.limiter.$guard.unlock_url").'?unlock_token='.$this->token;
     }
