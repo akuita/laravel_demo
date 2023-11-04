@@ -1,11 +1,4 @@
-<?php
-
-namespace Database\Factories;
-
-use App\Models\Abc;
-use Illuminate\Database\Eloquent\Factories\Factory;
-
-class AbcFactory extends Factory
+Factory extends Factory
 {
     protected $model = Abc::class;
 
@@ -16,3 +9,11 @@ class AbcFactory extends Factory
         ];
     }
 }
+<?php
+
+namespace Database\Factories;
+
+use App\Models\Abc;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class Abc

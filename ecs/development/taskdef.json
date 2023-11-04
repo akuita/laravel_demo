@@ -1,3 +1,11 @@
+oup": "gtmi_demo_development_ecs_web",
+                    "awslogs-region": "ap-northeast-1",
+                    "awslogs-stream-prefix": "laravel"
+                }
+            }
+        }
+    ]
+}
 {
     "family": "laravel",
     "networkMode": "awsvpc",
@@ -63,11 +71,4 @@
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "gtmi_demo_development_ecs_web",
-                    "awslogs-region": "ap-northeast-1",
-                    "awslogs-stream-prefix": "laravel"
-                }
-            }
-        }
-    ]
-}
+                    "awslogs-gr

@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Http\Requests\User;
+User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -27,3 +25,6 @@ class CreateUserRequest extends FormRequest
         ]);
     }
 }
+<?php
+
+namespace App\Http\Requests\

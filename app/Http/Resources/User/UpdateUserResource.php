@@ -1,12 +1,4 @@
-<?php
-
-namespace App\Http\Resources\User;
-
-use App\Http\Resources\BaseJsonResource;
-use Illuminate\Http\Request;
-
-/**
- * @mixin \App\Models\User;
+s\User;
  */
 class UpdateUserResource extends BaseJsonResource
 {
@@ -36,3 +28,12 @@ class UpdateUserResource extends BaseJsonResource
         ];
     }
 }
+<?php
+
+namespace App\Http\Resources\User;
+
+use App\Http\Resources\BaseJsonResource;
+use Illuminate\Http\Request;
+
+/**
+ * @mixin \App\Model

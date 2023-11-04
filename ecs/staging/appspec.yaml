@@ -1,3 +1,4 @@
+ort: 3000
 version: 0.0
 Resources:
   - TargetService:
@@ -6,4 +7,4 @@ Resources:
         TaskDefinition: '<TASK_DEFINITION>'
         LoadBalancerInfo:
           ContainerName: "laravel"
-          ContainerPort: 3000
+          ContainerP

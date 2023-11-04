@@ -1,57 +1,4 @@
-<?php
-
-namespace App\OAuthGrants;
-
-use DateInterval;
-use Exception;
-use Laravel\Passport\Bridge\User;
-use League\OAuth2\Server\Entities\UserEntityInterface;
-use League\OAuth2\Server\Exception\OAuthServerException;
-use League\OAuth2\Server\Grant\AbstractGrant;
-use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
-use League\OAuth2\Server\Repositories\UserRepositoryInterface;
-use League\OAuth2\Server\RequestAccessTokenEvent;
-use League\OAuth2\Server\RequestEvent;
-use League\OAuth2\Server\RequestRefreshTokenEvent;
-use League\OAuth2\Server\ResponseTypes\ResponseTypeInterface;
-use Psr\Http\Message\ServerRequestInterface;
-
-class VerifiedEmailGrant extends AbstractGrant
-{
-    use EventFireHelper;
-
-    public function __construct(UserRepositoryInterface $userRepository, RefreshTokenRepositoryInterface $refreshTokenRepository)
-    {
-        $this->setUserRepository($userRepository);
-        $this->setRefreshTokenRepository($refreshTokenRepository);
-        $this->refreshTokenTTL = new DateInterval('P1M');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function respondToAccessTokenRequest(ServerRequestInterface $request, ResponseTypeInterface $responseType, DateInterval $accessTokenTTL)
-    {
-        try {
-            // Validate request
-            $client = $this->validateClient($request);
-
-            $scopes = $this->validateScopes($this->getRequestParameter('scope', $request, $this->defaultScope));
-            $client->provider = $this->getRequestParameter('scope', $request);
-            $user = $this->validateUser($request, $client->provider);
-
-            // Finalize the requested scopes
-            $finalizedScopes = $this->scopeRepository->finalizeScopes($scopes, $this->getIdentifier(), $client, $user->getIdentifier());
-
-            // Issue and persist new access token
-            $accessToken = $this->issueAccessToken($accessTokenTTL, $client, $user->getIdentifier(), $finalizedScopes);
-            $this->getEmitter()->emit(new RequestAccessTokenEvent(RequestEvent::ACCESS_TOKEN_ISSUED, $request, $accessToken));
-            $responseType->setAccessToken($accessToken);
-
-            // Issue and persist new refresh token if given
-            $refreshToken = $this->issueRefreshToken($accessToken);
-
-            if ($refreshToken !== null) {
+l) {
                 $this->getEmitter()->emit(new RequestRefreshTokenEvent(RequestEvent::REFRESH_TOKEN_ISSUED, $request, $refreshToken));
                 $responseType->setRefreshToken($refreshToken);
             }
@@ -130,3 +77,57 @@ class VerifiedEmailGrant extends AbstractGrant
         return 'verified_email_grant';
     }
 }
+<?php
+
+namespace App\OAuthGrants;
+
+use DateInterval;
+use Exception;
+use Laravel\Passport\Bridge\User;
+use League\OAuth2\Server\Entities\UserEntityInterface;
+use League\OAuth2\Server\Exception\OAuthServerException;
+use League\OAuth2\Server\Grant\AbstractGrant;
+use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
+use League\OAuth2\Server\Repositories\UserRepositoryInterface;
+use League\OAuth2\Server\RequestAccessTokenEvent;
+use League\OAuth2\Server\RequestEvent;
+use League\OAuth2\Server\RequestRefreshTokenEvent;
+use League\OAuth2\Server\ResponseTypes\ResponseTypeInterface;
+use Psr\Http\Message\ServerRequestInterface;
+
+class VerifiedEmailGrant extends AbstractGrant
+{
+    use EventFireHelper;
+
+    public function __construct(UserRepositoryInterface $userRepository, RefreshTokenRepositoryInterface $refreshTokenRepository)
+    {
+        $this->setUserRepository($userRepository);
+        $this->setRefreshTokenRepository($refreshTokenRepository);
+        $this->refreshTokenTTL = new DateInterval('P1M');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function respondToAccessTokenRequest(ServerRequestInterface $request, ResponseTypeInterface $responseType, DateInterval $accessTokenTTL)
+    {
+        try {
+            // Validate request
+            $client = $this->validateClient($request);
+
+            $scopes = $this->validateScopes($this->getRequestParameter('scope', $request, $this->defaultScope));
+            $client->provider = $this->getRequestParameter('scope', $request);
+            $user = $this->validateUser($request, $client->provider);
+
+            // Finalize the requested scopes
+            $finalizedScopes = $this->scopeRepository->finalizeScopes($scopes, $this->getIdentifier(), $client, $user->getIdentifier());
+
+            // Issue and persist new access token
+            $accessToken = $this->issueAccessToken($accessTokenTTL, $client, $user->getIdentifier(), $finalizedScopes);
+            $this->getEmitter()->emit(new RequestAccessTokenEvent(RequestEvent::ACCESS_TOKEN_ISSUED, $request, $accessToken));
+            $responseType->setAccessToken($accessToken);
+
+            // Issue and persist new refresh token if given
+            $refreshToken = $this->issueRefreshToken($accessToken);
+
+            if ($refreshToken !== nul

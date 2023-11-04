@@ -1,3 +1,16 @@
+e')
+      - echo $terminated_status
+      - exit $terminated_status
+      - printf '{"Version":"1.0","ImageURI":"%s"}' $URI:latest > imageDetail.json
+      - echo ----Update Worker Force Deploy with new image ---
+      - aws ecs update-service --cluster "gtmi_demo_production" --service "gtmi_demo_production_worker"  --task-definition "worker"  --force-new-deployment
+      - echo ----End Worker Force Deploy with new image ---
+
+artifacts:
+  files:
+    - imageDetail.json
+    - ecs/production/taskdef.json
+    - ecs/production/appspec.yaml
 version: 0.2
 env:
   variables:
@@ -41,16 +54,4 @@ phases:
       - container_arn=$(echo $run_result | jq '.tasks[0].taskArn' | sed -e 's/^"//' -e 's/"$//')
       - aws ecs wait tasks-stopped --cluster gtmi_demo_production --tasks "${container_arn}"
       - describe_result=$(aws ecs describe-tasks --cluster gtmi_demo_production --tasks "${container_arn}")
-      - terminated_status=$(echo $describe_result | jq '.tasks[0].containers[0].exitCode')
-      - echo $terminated_status
-      - exit $terminated_status
-      - printf '{"Version":"1.0","ImageURI":"%s"}' $URI:latest > imageDetail.json
-      - echo ----Update Worker Force Deploy with new image ---
-      - aws ecs update-service --cluster "gtmi_demo_production" --service "gtmi_demo_production_worker"  --task-definition "worker"  --force-new-deployment
-      - echo ----End Worker Force Deploy with new image ---
-
-artifacts:
-  files:
-    - imageDetail.json
-    - ecs/production/taskdef.json
-    - ecs/production/appspec.yaml
+      - terminated_status=$(echo $describe_result | jq '.tasks[0].containers[0].exitCod

@@ -1,3 +1,11 @@
+nction verificationUrl($notifiable)
+    {
+        $token = $notifiable->confirmation_token;
+        $guard = $notifiable->getTable();
+
+        return config("auth.verification.$guard.verification_url")."?token=$token";
+    }
+}
 <?php
 
 namespace App\Notifications\Auth;
@@ -16,11 +24,4 @@ class VerifyEmailNotification extends VerifyEmail implements ShouldQueue
      * @param  mixed  $notifiable
      * @return string
      */
-    protected function verificationUrl($notifiable)
-    {
-        $token = $notifiable->confirmation_token;
-        $guard = $notifiable->getTable();
-
-        return config("auth.verification.$guard.verification_url")."?token=$token";
-    }
-}
+    protected fu

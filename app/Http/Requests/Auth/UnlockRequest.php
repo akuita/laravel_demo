@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Http\Requests\Auth;
+quests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -28,3 +26,6 @@ class UnlockRequest extends FormRequest
         ];
     }
 }
+<?php
+
+namespace App\Http\Re

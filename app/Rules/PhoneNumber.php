@@ -1,3 +1,16 @@
+?\d+)?\d+\z/', $value);
+    }
+
+    /**
+     * Get the validation error message.
+     *
+     * @return string
+     */
+    public function message()
+    {
+        return ':attribute must be phone number.';
+    }
+}
 <?php
 
 namespace App\Rules;
@@ -25,16 +38,4 @@ class PhoneNumber implements Rule
      */
     public function passes($attribute, $value)
     {
-        return preg_match('/\A(\(\+\d{1,3}\)|\+?\d+)?\d+\z/', $value);
-    }
-
-    /**
-     * Get the validation error message.
-     *
-     * @return string
-     */
-    public function message()
-    {
-        return ':attribute must be phone number.';
-    }
-}
+        return preg_match('/\A(\(\+\d{1,3}\)|\+

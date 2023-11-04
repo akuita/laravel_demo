@@ -1,27 +1,4 @@
-<?php
 
-namespace App\Supports\Facades;
-
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
-
-class StorageSupport
-{
-    public function __construct($type = null)
-    {
-        $this->type = empty($type) ? config('filesystems.default') : $type;
-    }
-
-    /**
-     * Upload a file to services
-     *
-     * @param  \Illuminate\Http\UploadedFile  $file
-     * @param  string  $type
-     * @return array|null
-     */
-    public function store(UploadedFile $file, $type = null): array
-    {
-        $extension = $file->getClientOriginalExtension();
         $originalName = $file->getClientOriginalName();
 
         $filename = md5($originalName.microtime()).'.'.$extension;
@@ -68,3 +45,27 @@ class StorageSupport
         };
     }
 }
+<?php
+
+namespace App\Supports\Facades;
+
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+
+class StorageSupport
+{
+    public function __construct($type = null)
+    {
+        $this->type = empty($type) ? config('filesystems.default') : $type;
+    }
+
+    /**
+     * Upload a file to services
+     *
+     * @param  \Illuminate\Http\UploadedFile  $file
+     * @param  string  $type
+     * @return array|null
+     */
+    public function store(UploadedFile $file, $type = null): array
+    {
+        $extension = $file->getClientOriginalExtension();

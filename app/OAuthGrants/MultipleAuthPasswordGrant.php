@@ -1,51 +1,4 @@
-<?php
-
-namespace App\OAuthGrants;
-
-use DateInterval;
-use Illuminate\Support\Facades\Hash;
-use Laravel\Passport\Bridge\User;
-use League\OAuth2\Server\Entities\ClientEntityInterface;
-use League\OAuth2\Server\Entities\UserEntityInterface;
-use League\OAuth2\Server\Exception\OAuthServerException;
-use League\OAuth2\Server\Grant\PasswordGrant;
-use League\OAuth2\Server\RequestAccessTokenEvent;
-use League\OAuth2\Server\RequestEvent;
-use League\OAuth2\Server\RequestRefreshTokenEvent;
-use League\OAuth2\Server\ResponseTypes\ResponseTypeInterface;
-use Psr\Http\Message\ServerRequestInterface;
-use RuntimeException;
-
-class MultipleAuthPasswordGrant extends PasswordGrant
-{
-    use EventFireHelper;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function respondToAccessTokenRequest(
-        ServerRequestInterface $request,
-        ResponseTypeInterface $responseType,
-        DateInterval $accessTokenTTL
-    ) {
-        try {
-            // Validate request
-            $client = $this->validateClient($request);
-
-            $scopes = $this->validateScopes($this->getRequestParameter('scope', $request, $this->defaultScope));
-            $client->provider = $this->getRequestParameter('scope', $request);
-            $user = $this->validateUser($request, $client);
-
-            // Finalize the requested scopes
-            $finalizedScopes = $this->scopeRepository->finalizeScopes($scopes, $this->getIdentifier(), $client, $user->getIdentifier());
-
-            // Issue and persist new access token
-            $accessToken = $this->issueAccessToken($accessTokenTTL, $client, $user->getIdentifier(), $finalizedScopes);
-            $this->getEmitter()->emit(new RequestAccessTokenEvent(RequestEvent::ACCESS_TOKEN_ISSUED, $request, $accessToken));
-            $responseType->setAccessToken($accessToken);
-
-            // Issue and persist new refresh token if given
-            $refreshToken = $this->issueRefreshToken($accessToken);
+efreshToken = $this->issueRefreshToken($accessToken);
 
             if ($refreshToken !== null) {
                 $this->getEmitter()->emit(new RequestRefreshTokenEvent(RequestEvent::REFRESH_TOKEN_ISSUED, $request, $refreshToken));
@@ -158,3 +111,51 @@ class MultipleAuthPasswordGrant extends PasswordGrant
         return new User($user->getAuthIdentifier());
     }
 }
+<?php
+
+namespace App\OAuthGrants;
+
+use DateInterval;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Passport\Bridge\User;
+use League\OAuth2\Server\Entities\ClientEntityInterface;
+use League\OAuth2\Server\Entities\UserEntityInterface;
+use League\OAuth2\Server\Exception\OAuthServerException;
+use League\OAuth2\Server\Grant\PasswordGrant;
+use League\OAuth2\Server\RequestAccessTokenEvent;
+use League\OAuth2\Server\RequestEvent;
+use League\OAuth2\Server\RequestRefreshTokenEvent;
+use League\OAuth2\Server\ResponseTypes\ResponseTypeInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use RuntimeException;
+
+class MultipleAuthPasswordGrant extends PasswordGrant
+{
+    use EventFireHelper;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function respondToAccessTokenRequest(
+        ServerRequestInterface $request,
+        ResponseTypeInterface $responseType,
+        DateInterval $accessTokenTTL
+    ) {
+        try {
+            // Validate request
+            $client = $this->validateClient($request);
+
+            $scopes = $this->validateScopes($this->getRequestParameter('scope', $request, $this->defaultScope));
+            $client->provider = $this->getRequestParameter('scope', $request);
+            $user = $this->validateUser($request, $client);
+
+            // Finalize the requested scopes
+            $finalizedScopes = $this->scopeRepository->finalizeScopes($scopes, $this->getIdentifier(), $client, $user->getIdentifier());
+
+            // Issue and persist new access token
+            $accessToken = $this->issueAccessToken($accessTokenTTL, $client, $user->getIdentifier(), $finalizedScopes);
+            $this->getEmitter()->emit(new RequestAccessTokenEvent(RequestEvent::ACCESS_TOKEN_ISSUED, $request, $accessToken));
+            $responseType->setAccessToken($accessToken);
+
+            // Issue and persist new refresh token if given
+            $r

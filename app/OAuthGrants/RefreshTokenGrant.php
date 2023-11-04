@@ -1,40 +1,4 @@
-<?php
-
-namespace App\OAuthGrants;
-
-use DateInterval;
-use League\OAuth2\Server\Exception\OAuthServerException;
-use League\OAuth2\Server\Grant\RefreshTokenGrant as BaseRefreshTokenGrant;
-use League\OAuth2\Server\RequestAccessTokenEvent;
-use League\OAuth2\Server\RequestEvent;
-use League\OAuth2\Server\RequestRefreshTokenEvent;
-use League\OAuth2\Server\ResponseTypes\ResponseTypeInterface;
-use Psr\Http\Message\ServerRequestInterface;
-
-class RefreshTokenGrant extends BaseRefreshTokenGrant
-{
-    /**
-     * {@inheritdoc}
-     */
-    public function respondToAccessTokenRequest(
-        ServerRequestInterface $request,
-        ResponseTypeInterface $responseType,
-        DateInterval $accessTokenTTL
-    ) {
-        try {
-            // Validate request
-            $client = $this->validateClient($request);
-            $client->provider = $this->getRequestParameter('scope', $request);
-            $oldRefreshToken = $this->validateOldRefreshToken($request, $client->getIdentifier());
-            $scopes = $this->validateScopes(
-                $this->getRequestParameter(
-                    'scope',
-                    $request,
-                    \implode(self::SCOPE_DELIMITER_STRING, $oldRefreshToken['scopes'])
-                )
-            );
-
-            // The OAuth spec says that a refreshed access token can have the original scopes or fewer so ensure
+r fewer so ensure
             // the request doesn't include any new scopes
             foreach ($scopes as $scope) {
                 if (\in_array($scope->getIdentifier(), $oldRefreshToken['scopes'], true) === false) {
@@ -76,3 +40,40 @@ class RefreshTokenGrant extends BaseRefreshTokenGrant
         }
     }
 }
+<?php
+
+namespace App\OAuthGrants;
+
+use DateInterval;
+use League\OAuth2\Server\Exception\OAuthServerException;
+use League\OAuth2\Server\Grant\RefreshTokenGrant as BaseRefreshTokenGrant;
+use League\OAuth2\Server\RequestAccessTokenEvent;
+use League\OAuth2\Server\RequestEvent;
+use League\OAuth2\Server\RequestRefreshTokenEvent;
+use League\OAuth2\Server\ResponseTypes\ResponseTypeInterface;
+use Psr\Http\Message\ServerRequestInterface;
+
+class RefreshTokenGrant extends BaseRefreshTokenGrant
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function respondToAccessTokenRequest(
+        ServerRequestInterface $request,
+        ResponseTypeInterface $responseType,
+        DateInterval $accessTokenTTL
+    ) {
+        try {
+            // Validate request
+            $client = $this->validateClient($request);
+            $client->provider = $this->getRequestParameter('scope', $request);
+            $oldRefreshToken = $this->validateOldRefreshToken($request, $client->getIdentifier());
+            $scopes = $this->validateScopes(
+                $this->getRequestParameter(
+                    'scope',
+                    $request,
+                    \implode(self::SCOPE_DELIMITER_STRING, $oldRefreshToken['scopes'])
+                )
+            );
+
+            // The OAuth spec says that a refreshed access token can have the original scopes o

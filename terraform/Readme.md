@@ -1,6 +1,4 @@
-# gtmi-demo terraform
-
-## Table of Contents
+f Contents
 * [Requirements](##requirements)
 * [Setup](##setup)
 * [Usage](##usage)
@@ -105,3 +103,6 @@ terraform validate
 - We aren't managing DNS on terraform currently.
 - We're not using workspace feature for switching environment (staging / production), because it's for testing according to [the official document](https://www.terraform.io/docs/state/workspaces.html#when-to-use-multiple-workspaces).
 - See [the official best practices](https://www.terraform-best-practices.com/) to keep this project clean and simple.
+# gtmi-demo terraform
+
+## Table o

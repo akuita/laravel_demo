@@ -1,40 +1,4 @@
-<?php
-
-return [
-    'enabled' => env('APP_DEBUG', false),
-    // change it to true will make lrd to throw exception if rules in request class need to be changed
-    // keep it false
-    'debug' => env('APP_DEBUG', false),
-
-    /*
-    * Route where request docs will be served from laravel app.
-    * localhost:8080/request-docs
-    */
-    'url' => 'request-docs',
-    'middlewares' => [
-        // \Rakutentech\LaravelRequestDocs\NotFoundWhenProduction::class,
-    ],
-
-    //Use only routes where ->uri start with next string Using Str::startWith( . e.g. - /api/mobile
-    'only_route_uri_start_with' => '',
-
-    'hide_matching' => [
-        '#^telescope#',
-        '#^docs#',
-        '#^request-docs#',
-        '#^api-docs#',
-        '#^sanctum#',
-        '#^_ignition#',
-        '#^_tt#',
-    ],
-
-    'hide_meta_data' => false,
-    'hide_sql_data' => false,
-    'hide_logs_data' => false,
-    'hide_models_data' => false,
-
-    // https://github.com/rakutentech/laravel-request-docs/pull/92
-    // When rules are put in other method than rules()
+ in other method than rules()
     'rules_methods' => [
         'rules',
     ],
@@ -148,3 +112,41 @@ return [
         ],
     ],
 ];
+<?php
+
+return [
+    'enabled' => env('APP_DEBUG', false),
+    // change it to true will make lrd to throw exception if rules in request class need to be changed
+    // keep it false
+    'debug' => env('APP_DEBUG', false),
+
+    /*
+    * Route where request docs will be served from laravel app.
+    * localhost:8080/request-docs
+    */
+    'url' => 'request-docs',
+    'middlew
+ares' => [
+        // \Rakutentech\LaravelRequestDocs\NotFoundWhenProduction::class,
+    ],
+
+    //Use only routes where ->uri start with next string Using Str::startWith( . e.g. - /api/mobile
+    'only_route_uri_start_with' => '',
+
+    'hide_matching' => [
+        '#^telescope#',
+        '#^docs#',
+        '#^request-docs#',
+        '#^api-docs#',
+        '#^sanctum#',
+        '#^_ignition#',
+        '#^_tt#',
+    ],
+
+    'hide_meta_data' => false,
+    'hide_sql_data' => false,
+    'hide_logs_data' => false,
+    'hide_models_data' => false,
+
+    // https://github.com/rakutentech/laravel-request-docs/pull/92
+    // When rules are put

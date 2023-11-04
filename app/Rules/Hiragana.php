@@ -1,3 +1,21 @@
+  $value
+     * @return bool
+     */
+    public function passes($attribute, $value)
+    {
+        return preg_match('/^[ぁ-ん]+$/', $value);
+    }
+
+    /**
+     * Get the validation error message.
+     *
+     * @return string
+     */
+    public function message()
+    {
+        return ':attribute must be in Hiragana.';
+    }
+}
 <?php
 
 namespace App\Rules;
@@ -20,21 +38,4 @@ class Hiragana implements Rule
      * Determine if the validation rule passes.
      *
      * @param  string  $attribute
-     * @param  mixed  $value
-     * @return bool
-     */
-    public function passes($attribute, $value)
-    {
-        return preg_match('/^[ぁ-ん]+$/', $value);
-    }
-
-    /**
-     * Get the validation error message.
-     *
-     * @return string
-     */
-    public function message()
-    {
-        return ':attribute must be in Hiragana.';
-    }
-}
+     * @param  mixed

@@ -1,3 +1,74 @@
+&& $statusCode == 500) {
+            if (method_exists($exception, 'getMessage')) {
+                $response['errors'] = $exception->getMessage();
+            }
+            $response['trace'] = $exception->getTrace();
+            $response['code'] = $exception->getCode();
+        }
+
+        $response['status'] = $statusCode;
+
+        return response()->json($response, $statusCode);
+    }
+
+    private function handleApiException($request, Throwable $exception, $locale)
+    {
+        $exception = $this->prepareException($exception);
+
+        if ($exception instanceof HttpResponseException) {
+            $exception = $exception->getResponse();
+        }
+
+        if ($exception instanceof AuthenticationException) {
+            $exception = $this->unauthenticated($request, $exception);
+        }
+
+        if ($exception instanceof ValidationException) {
+            $exception = $this->convertValidationExceptionToResponse($exception, $request);
+        }
+
+        return $this->customApiResponse($exception, $locale);
+    }
+
+    /**
+     * Render an exception into an HTTP response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Throwable  $exception
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Throwable
+     */
+    public function render($request, Throwable $exception)
+    {
+        if ($request->wantsJson()) {
+            $currentLocale = $request->headers->get('Accept-Language');
+
+            return $this->handleApiException($request, $exception, $currentLocale);
+        }
+
+        return parent::render($request, $exception);
+    }
+
+    /**
+     * Convert the given exception to an array.
+     *
+     * @param  \Throwable  $e
+     * @return array
+     */
+    protected function convertExceptionToArray(Throwable $e): array
+    {
+        return config('app.debug') ? [
+            'message' => $e->getMessage(),
+            'exception' => get_class($e),
+            'file' => $e->getFile(),
+            'line' => $e->getLine(),
+            'trace' => collect($e->getTrace())->map(fn ($trace) => Arr::except($trace, ['args']))->all(),
+        ] : [
+            'message' => $this->isHttpException($e) ? $e->getMessage() : __('errors.server_error'),
+        ];
+    }
+}
 <?php
 
 namespace App\Exceptions;
@@ -72,74 +143,4 @@ class Handler extends ExceptionHandler
                 break;
         }
 
-        if (config('app.debug') && $statusCode == 500) {
-            if (method_exists($exception, 'getMessage')) {
-                $response['errors'] = $exception->getMessage();
-            }
-            $response['trace'] = $exception->getTrace();
-            $response['code'] = $exception->getCode();
-        }
-
-        $response['status'] = $statusCode;
-
-        return response()->json($response, $statusCode);
-    }
-
-    private function handleApiException($request, Throwable $exception, $locale)
-    {
-        $exception = $this->prepareException($exception);
-
-        if ($exception instanceof HttpResponseException) {
-            $exception = $exception->getResponse();
-        }
-
-        if ($exception instanceof AuthenticationException) {
-            $exception = $this->unauthenticated($request, $exception);
-        }
-
-        if ($exception instanceof ValidationException) {
-            $exception = $this->convertValidationExceptionToResponse($exception, $request);
-        }
-
-        return $this->customApiResponse($exception, $locale);
-    }
-
-    /**
-     * Render an exception into an HTTP response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Throwable  $exception
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
-     * @throws \Throwable
-     */
-    public function render($request, Throwable $exception)
-    {
-        if ($request->wantsJson()) {
-            $currentLocale = $request->headers->get('Accept-Language');
-
-            return $this->handleApiException($request, $exception, $currentLocale);
-        }
-
-        return parent::render($request, $exception);
-    }
-
-    /**
-     * Convert the given exception to an array.
-     *
-     * @param  \Throwable  $e
-     * @return array
-     */
-    protected function convertExceptionToArray(Throwable $e): array
-    {
-        return config('app.debug') ? [
-            'message' => $e->getMessage(),
-            'exception' => get_class($e),
-            'file' => $e->getFile(),
-            'line' => $e->getLine(),
-            'trace' => collect($e->getTrace())->map(fn ($trace) => Arr::except($trace, ['args']))->all(),
-        ] : [
-            'message' => $this->isHttpException($e) ? $e->getMessage() : __('errors.server_error'),
-        ];
-    }
-}
+        if (config('app.debug') 

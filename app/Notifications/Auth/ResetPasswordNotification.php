@@ -1,19 +1,4 @@
-<?php
 
-namespace App\Notifications\Auth;
-
-use Illuminate\Auth\Notifications\ResetPassword;
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Support\Facades\Lang;
-
-class ResetPasswordNotification extends ResetPassword implements ShouldQueue
-{
-    use Queueable;
-
-    /**
-     * Build the mail representation of the notification.
      *
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
@@ -45,3 +30,19 @@ class ResetPasswordNotification extends ResetPassword implements ShouldQueue
         return config("auth.passwords.$guard.reset_password_url")."?token=$token";
     }
 }
+<?php
+
+namespace App\Notifications\Auth;
+
+use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Facades\Lang;
+
+class ResetPasswordNotification extends ResetPassword implements ShouldQueue
+{
+    use Queueable;
+
+    /**
+     * Build the mail representation of the notification.

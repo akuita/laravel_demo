@@ -1,3 +1,10 @@
+];
+
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+}
 <?php
 
 namespace App\Models;
@@ -23,10 +30,4 @@ class Abc extends Model
      * @var array<string, string>
      */
     protected $casts = [
-    ];
-
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-}
+    

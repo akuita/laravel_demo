@@ -1,31 +1,4 @@
-<?php
-
-namespace App\Models\Traits\Auth;
-
-use App\Notifications\Auth\UnlockEmailNotification;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-
-trait HasAttemptLocked
-{
-    public function loginFailed(): void
-    {
-        if ($this->isLocked()) {
-            return;
-        }
-        $this->increaseFailedAttempt();
-
-        if ($this->isMaxFailedAttempts()) {
-            $this->lock();
-        }
-    }
-
-    public function increaseFailedAttempt(): void
-    {
-        $this->increment('failed_attempts');
-    }
-
-    public function isMaxFailedAttempts(): bool
+bool
     {
         $maxAttempts = config('auth.limiter.'.$this->getTable().'.max_attempts');
 
@@ -83,3 +56,31 @@ trait HasAttemptLocked
         ])->save();
     }
 }
+<?php
+
+namespace App\Models\Traits\Auth;
+
+use App\Notifications\Auth\UnlockEmailNotification;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
+trait HasAttemptLocked
+{
+    public function loginFailed(): void
+    {
+        if ($this->isLocked()) {
+            return;
+        }
+        $this->increaseFailedAttempt();
+
+        if ($this->isMaxFailedAttempts()) {
+            $this->lock();
+        }
+    }
+
+    public function increaseFailedAttempt(): void
+    {
+        $this->increment('failed_attempts');
+    }
+
+    public function isMaxFailedAttempts(): 

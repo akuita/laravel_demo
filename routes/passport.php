@@ -1,22 +1,4 @@
-<?php
-
-use Illuminate\Support\Facades\Route;
-
-Route::group([
-    'namespace' => '\Laravel\Passport\Http\Controllers',
-], function () {
-    Route::get('/authorize', [
-        'uses' => 'AuthorizationController@authorize',
-        'as' => 'authorizations.authorize',
-        'middleware' => 'web',
-    ]);
-
-    $guard = config('passport.guard', null);
-
-    Route::middleware(['web', $guard ? 'auth:'.$guard : 'auth'])->group(function () {
-        Route::post('/token/refresh', [
-            'uses' => 'TransientTokenController@refresh',
-            'as' => 'token.refresh',
+token.refresh',
         ]);
 
         Route::post('/authorize', [
@@ -80,3 +62,22 @@ Route::group([
         ]);
     });
 });
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+Route::group([
+    'namespace' => '\Laravel\Passport\Http\Controllers',
+], function () {
+    Route::get('/authorize', [
+        'uses' => 'AuthorizationController@authorize',
+        'as' => 'authorizations.authorize',
+        'middleware' => 'web',
+    ]);
+
+    $guard = config('passport.guard', null);
+
+    Route::middleware(['web', $guard ? 'auth:'.$guard : 'auth'])->group(function () {
+        Route::post('/token/refresh', [
+            'uses' => 'TransientTokenController@refresh',
+            'as' => '

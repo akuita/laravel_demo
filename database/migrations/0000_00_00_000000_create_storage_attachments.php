@@ -1,3 +1,22 @@
+er('size')->nullable();
+                $table->string('checksum', 255)->nullable();
+                $table->string('service', 255)->default('s3');
+                $table->boolean('deleted')->default(false);
+                $table->timestamps();
+            });
+        }
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('storage_attachments');
+    }
+};
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -22,22 +41,4 @@ return new class extends Migration
                 $table->string('filename', 255)->uniqid();
                 $table->string('type')->nullable();
                 $table->text('metadata')->nullable();
-                $table->bigInteger('size')->nullable();
-                $table->string('checksum', 255)->nullable();
-                $table->string('service', 255)->default('s3');
-                $table->boolean('deleted')->default(false);
-                $table->timestamps();
-            });
-        }
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('storage_attachments');
-    }
-};
+                $table->bigInteg

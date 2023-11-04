@@ -1,7 +1,4 @@
-{
-    "family": "laravel",
-    "networkMode": "awsvpc",
-    "taskRoleArn": "arn:aws:iam::677804650362:role/ecs_tasks_gtmi_demo_staging",
+4650362:role/ecs_tasks_gtmi_demo_staging",
     "executionRoleArn": "arn:aws:iam::677804650362:role/ecs_tasks_gtmi_demo_staging",
     
     "cpu": "512",
@@ -71,3 +68,7 @@
         }
     ]
 }
+{
+    "family": "laravel",
+    "networkMode": "awsvpc",
+    "taskRoleArn": "arn:aws:iam::67780
