@@ -1,3 +1,19 @@
+ == "APP_KEY="  ]; then
+    $SAIL php artisan key:generate --ansi
+fi
+
+$SAIL php artisan migrate
+
+if [ -n "$hasAuth" ]; then
+    $SAIL php artisan passport:keys
+fi
+
+if [ -n "$hasFileUpload" ]; then
+    $SAIL php artisan storage:link || true
+fi
+
+$SAIL composer additional-commands
+
 #!/bin/bash
 
 while getopts ":dafp:r:b:e:" flag;
@@ -59,19 +75,4 @@ currentKey=$(echo $(grep -v '^#' .env.$environment | grep -e "APP_KEY"))
 SAIL=./vendor/bin/sail
 $SAIL up -d
 
-if [  $currentKey == "APP_KEY="  ]; then
-    $SAIL php artisan key:generate --ansi
-fi
-
-$SAIL php artisan migrate
-
-if [ -n "$hasAuth" ]; then
-    $SAIL php artisan passport:keys
-fi
-
-if [ -n "$hasFileUpload" ]; then
-    $SAIL php artisan storage:link || true
-fi
-
-$SAIL composer additional-commands
-
+if [  $currentKey

@@ -1,10 +1,4 @@
-<?php
-
-namespace App\Rules;
-
-use Illuminate\Contracts\Validation\Rule;
-
-class PhoneNumber implements Rule
+neNumber implements Rule
 {
     /**
      * Create a new rule instance.
@@ -38,3 +32,10 @@ class PhoneNumber implements Rule
         return ':attribute must be phone number.';
     }
 }
+<?php
+
+namespace App\Rules;
+
+use Illuminate\Contracts\Validation\Rule;
+
+class Pho

@@ -1,13 +1,4 @@
-<?php
-
-namespace App\Http\Middleware;
-
-use Illuminate\Foundation\Http\Middleware\TrimStrings as Middleware;
-
-class TrimStrings extends Middleware
-{
-    /**
-     * The names of the attributes that should not be trimmed.
+t be trimmed.
      *
      * @var array<int, string>
      */
@@ -17,3 +8,13 @@ class TrimStrings extends Middleware
         'password_confirmation',
     ];
 }
+<?php
+
+namespace App\Http\Middleware;
+
+use Illuminate\Foundation\Http\Middleware\TrimStrings as Middleware;
+
+class TrimStrings extends Middleware
+{
+    /**
+     * The names of the attributes that should no

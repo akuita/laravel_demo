@@ -1,4 +1,4 @@
-<?php
+hp
 
 namespace App\Rules;
 
@@ -38,3 +38,4 @@ class Hiragana implements Rule
         return ':attribute must be in Hiragana.';
     }
 }
+<?p

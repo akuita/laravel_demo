@@ -1,3 +1,20 @@
+ver notifications to AWS Chatbot.
+
+Resources:
+  SlackChannelConfiguration:
+    Type: AWS::Chatbot::SlackChannelConfiguration
+    Properties:
+      ConfigurationName: !Ref ConfigurationNameParameter
+      IamRoleArn: !Ref IamRoleArnParameter
+      LoggingLevel: !Ref LoggingLevelParameter
+      SlackChannelId: !Ref SlackChannelIdParameter
+      SlackWorkspaceId: !Ref SlackWorkspaceIdParameter
+      SnsTopicArns: !Ref SnsTopicArnsParameter
+
+Outputs:
+  ConfigurationArn:
+    Description: The ARN of the Chatbot Slack configuration
+    Value: !Ref SlackChannelConfiguration
 AWSTemplateFormatVersion: "2010-09-09"
 Description: AWS Chatbot Configuration
 Parameters:
@@ -22,20 +39,4 @@ Parameters:
     Description: The ID of the Slack workspace authorized with AWS Chatbot. To get the workspace ID, you must perform the initial authorization flow with Slack in the AWS Chatbot console. Then you can copy and paste the workspace ID from the console. For more details, see steps 1-4 in Setting Up AWS Chatbot with Slack in the AWS Chatbot User Guide.
   SnsTopicArnsParameter:
     Type: CommaDelimitedList
-    Description: The ARNs of the SNS topics that deliver notifications to AWS Chatbot.
-
-Resources:
-  SlackChannelConfiguration:
-    Type: AWS::Chatbot::SlackChannelConfiguration
-    Properties:
-      ConfigurationName: !Ref ConfigurationNameParameter
-      IamRoleArn: !Ref IamRoleArnParameter
-      LoggingLevel: !Ref LoggingLevelParameter
-      SlackChannelId: !Ref SlackChannelIdParameter
-      SlackWorkspaceId: !Ref SlackWorkspaceIdParameter
-      SnsTopicArns: !Ref SnsTopicArnsParameter
-
-Outputs:
-  ConfigurationArn:
-    Description: The ARN of the Chatbot Slack configuration
-    Value: !Ref SlackChannelConfiguration
+    Description: The ARNs of the SNS topics that deli

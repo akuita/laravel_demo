@@ -1,26 +1,4 @@
-<?php
-
-namespace App\Providers;
-
-use App\Events\Auth\AttemptLock;
-use App\Events\Auth\VerifyEmailFailed as VerifyEmailFailedEvent;
-use App\Listeners\Auth\CheckLocked;
-use App\Listeners\Auth\FailedVerifyEmail;
-use App\Listeners\Auth\LoginSuccess;
-use App\Listeners\Auth\ReleaseLock;
-use App\Listeners\Auth\ValidateFailedAttempt;
-use App\Listeners\Auth\ValidateUserActive;
-use Illuminate\Auth\Events\Failed;
-use Illuminate\Auth\Events\Login;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Auth\Events\Validated;
-use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
-use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-
-class EventServiceProvider extends ServiceProvider
-{
-    /**
-     * The event to listener mappings for the application.
+ings for the application.
      *
      * @var array<class-string, array<int, class-string>>
      */
@@ -66,3 +44,26 @@ class EventServiceProvider extends ServiceProvider
         return false;
     }
 }
+<?php
+
+namespace App\Providers;
+
+use App\Events\Auth\AttemptLock;
+use App\Events\Auth\VerifyEmailFailed as VerifyEmailFailedEvent;
+use App\Listeners\Auth\CheckLocked;
+use App\Listeners\Auth\FailedVerifyEmail;
+use App\Listeners\Auth\LoginSuccess;
+use App\Listeners\Auth\ReleaseLock;
+use App\Listeners\Auth\ValidateFailedAttempt;
+use App\Listeners\Auth\ValidateUserActive;
+use Illuminate\Auth\Events\Failed;
+use Illuminate\Auth\Events\Login;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Auth\Events\Validated;
+use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
+use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+
+class EventServiceProvider extends ServiceProvider
+{
+    /**
+     * The event to listener mapp

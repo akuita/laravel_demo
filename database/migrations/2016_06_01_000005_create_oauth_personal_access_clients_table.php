@@ -1,3 +1,6 @@
+opIfExists('oauth_personal_access_clients');
+    }
+};
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -23,6 +26,4 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('oauth_personal_access_clients');
-    }
-};
+        Schema::dr

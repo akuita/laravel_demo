@@ -1,8 +1,4 @@
-<?php
-
-namespace App\Listeners\Auth;
-
-use Illuminate\Auth\Events\Login;
+in;
 
 class LoginSuccess
 {
@@ -13,3 +9,8 @@ class LoginSuccess
         }
     }
 }
+<?php
+
+namespace App\Listeners\Auth;
+
+use Illuminate\Auth\Events\Log

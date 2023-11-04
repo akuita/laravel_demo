@@ -1,3 +1,5 @@
+taskdef.json
+    - ecs/staging/appspec.yaml
 version: 0.2
 env:
   variables:
@@ -52,5 +54,4 @@ phases:
 artifacts:
   files:
     - imageDetail.json
-    - ecs/staging/taskdef.json
-    - ecs/staging/appspec.yaml
+    - ecs/staging/

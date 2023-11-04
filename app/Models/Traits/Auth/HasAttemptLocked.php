@@ -1,8 +1,4 @@
-<?php
-
-namespace App\Models\Traits\Auth;
-
-use App\Notifications\Auth\UnlockEmailNotification;
+s\Auth\UnlockEmailNotification;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -83,3 +79,8 @@ trait HasAttemptLocked
         ])->save();
     }
 }
+<?php
+
+namespace App\Models\Traits\Auth;
+
+use App\Notification

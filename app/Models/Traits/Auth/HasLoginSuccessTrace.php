@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Models\Traits\Auth;
+mespace App\Models\Traits\Auth;
 
 trait HasLoginSuccessTrace
 {
@@ -14,3 +12,6 @@ trait HasLoginSuccessTrace
         ])->save();
     }
 }
+<?php
+
+na

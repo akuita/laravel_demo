@@ -1,14 +1,4 @@
-### Requirement
-- PHP 8.2
-- Composer ^2.4
-- Docker
-- Ctype PHP Extension
-- cURL PHP Extension
-- DOM PHP Extension
-- Fileinfo PHP Extension
-- Filter PHP Extension
-- Hash PHP Extension
-- Mbstring PHP Extension
+bstring PHP Extension
 - OpenSSL PHP Extension
 - PCRE PHP Extension
 - PDO PHP Extension
@@ -120,7 +110,17 @@ php artisan env:decrypt --env=your_env_name --key=your_key
 
 EX: In order to decrypt staging env, get the key from file `staging.key` and run command below
 ```bash
-./vendor/bin/sail php artisan env:decrypt --env=staging --key=1234567890
+./vendor/bin/sail php artisan env:decrypt --env=staging --key=### Requirement
+- PHP 8.2
+- Composer ^2.4
+- Docker
+- Ctype PHP Extension
+- cURL PHP Extension
+- DOM PHP Extension
+- Fileinfo PHP Extension
+- Filter PHP Extension
+- Hash PHP Extension
+- M1234567890
 ```
 - In order to encrypt env, please get the key from {your_env_name}.key file and  run command below
 ```bash

@@ -1,6 +1,4 @@
-<?php
-
-use Illuminate\Support\Facades\Route;
+e\Support\Facades\Route;
 
 Route::group([
     'namespace' => '\Laravel\Passport\Http\Controllers',
@@ -80,3 +78,6 @@ Route::group([
         ]);
     });
 });
+<?php
+
+use Illuminat
