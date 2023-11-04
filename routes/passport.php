@@ -1,9 +1,4 @@
-<?php
-
-use Illuminate\Support\Facades\Route;
-
-Route::group([
-    'namespace' => '\Laravel\Passport\Http\Controllers',
+lers',
 ], function () {
     Route::get('/authorize', [
         'uses' => 'AuthorizationController@authorize',
@@ -80,3 +75,9 @@ Route::group([
         ]);
     });
 });
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+Route::group([
+    'namespace' => '\Laravel\Passport\Http\Control

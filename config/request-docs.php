@@ -1,18 +1,4 @@
-<?php
-
-return [
-    'enabled' => env('APP_DEBUG', false),
-    // change it to true will make lrd to throw exception if rules in request class need to be changed
-    // keep it false
-    'debug' => env('APP_DEBUG', false),
-
-    /*
-    * Route where request docs will be served from laravel app.
-    * localhost:8080/request-docs
-    */
-    'url' => 'request-docs',
-    'middlewares' => [
-        // \Rakutentech\LaravelRequestDocs\NotFoundWhenProduction::class,
+::class,
     ],
 
     //Use only routes where ->uri start with next string Using Str::startWith( . e.g. - /api/mobile
@@ -139,7 +125,8 @@ return [
                 'description' => 'Unexpected error',
                 'content' => [
                     'application/json' => [
-                        'schema' => [
+              
+          'schema' => [
                             'type' => 'object',
                         ],
                     ],
@@ -148,3 +135,18 @@ return [
         ],
     ],
 ];
+<?php
+
+return [
+    'enabled' => env('APP_DEBUG', false),
+    // change it to true will make lrd to throw exception if rules in request class need to be changed
+    // keep it false
+    'debug' => env('APP_DEBUG', false),
+
+    /*
+    * Route where request docs will be served from laravel app.
+    * localhost:8080/request-docs
+    */
+    'url' => 'request-docs',
+    'middlewares' => [
+        // \Rakutentech\LaravelRequestDocs\NotFoundWhenProduction

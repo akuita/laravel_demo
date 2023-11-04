@@ -1,8 +1,4 @@
-<?php
-
-namespace App\Models;
-
-use App\Models\Traits\FilterQueryBuilder;
+its\FilterQueryBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -30,3 +26,8 @@ class Abc extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 }
+<?php
+
+namespace App\Models;
+
+use App\Models\Tra

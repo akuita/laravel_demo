@@ -1,4 +1,3 @@
-<?php
 
 namespace App\Notifications\Auth;
 
@@ -24,3 +23,4 @@ class VerifyEmailNotification extends VerifyEmail implements ShouldQueue
         return config("auth.verification.$guard.verification_url")."?token=$token";
     }
 }
+<?php

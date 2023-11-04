@@ -1,3 +1,37 @@
+parameter/gtmi_demo_development/database_host"
+                  },
+                  {
+                    "name": "DB_PASSWORD",
+                    "valueFrom": "arn:aws:ssm:ap-northeast-1:677804650362:parameter/gtmi_demo_development/database_password"
+                  },
+                  {
+                    "name": "LARAVEL_ENV_ENCRYPTION_KEY",
+                    "valueFrom": "arn:aws:ssm:ap-northeast-1:677804650362:parameter/gtmi_demo_development/master_key"
+                  },
+                  {
+                    "name":  "REDIS_HOST",
+                    "valueFrom": "arn:aws:ssm:ap-northeast-1:677804650362:parameter/gtmi_demo_development/redis_address"
+                  },
+                  {
+                    "name": "GIT_TOKEN",
+                    "valueFrom": "arn:aws:ssm:ap-northeast-1:677804650362:parameter/gtmi_demo_development/git_token"
+                  },
+                  {
+                    "name": "APP_KEY",
+                    "valueFrom": "arn:aws:ssm:ap-northeast-1:677804650362:parameter/gtmi_demo_development/app_key"
+                  }
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "gtmi_demo_development_ecs_web",
+                    "awslogs-region": "ap-northeast-1",
+                    "awslogs-stream-prefix": "laravel"
+                }
+            }
+        }
+    ]
+}
 {
     "family": "laravel",
     "networkMode": "awsvpc",
@@ -37,37 +71,4 @@
             "secrets": [
                   {
                     "name": "DB_HOST",
-                    "valueFrom": "arn:aws:ssm:ap-northeast-1:677804650362:parameter/gtmi_demo_development/database_host"
-                  },
-                  {
-                    "name": "DB_PASSWORD",
-                    "valueFrom": "arn:aws:ssm:ap-northeast-1:677804650362:parameter/gtmi_demo_development/database_password"
-                  },
-                  {
-                    "name": "LARAVEL_ENV_ENCRYPTION_KEY",
-                    "valueFrom": "arn:aws:ssm:ap-northeast-1:677804650362:parameter/gtmi_demo_development/master_key"
-                  },
-                  {
-                    "name":  "REDIS_HOST",
-                    "valueFrom": "arn:aws:ssm:ap-northeast-1:677804650362:parameter/gtmi_demo_development/redis_address"
-                  },
-                  {
-                    "name": "GIT_TOKEN",
-                    "valueFrom": "arn:aws:ssm:ap-northeast-1:677804650362:parameter/gtmi_demo_development/git_token"
-                  },
-                  {
-                    "name": "APP_KEY",
-                    "valueFrom": "arn:aws:ssm:ap-northeast-1:677804650362:parameter/gtmi_demo_development/app_key"
-                  }
-            ],
-            "logConfiguration": {
-                "logDriver": "awslogs",
-                "options": {
-                    "awslogs-group": "gtmi_demo_development_ecs_web",
-                    "awslogs-region": "ap-northeast-1",
-                    "awslogs-stream-prefix": "laravel"
-                }
-            }
-        }
-    ]
-}
+                    "valueFrom": "arn:aws:ssm:ap-northeast-1:677804650362:

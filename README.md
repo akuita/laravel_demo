@@ -1,3 +1,62 @@
+1234567890
+```
+- In order to encrypt env, please get the key from {your_env_name}.key file and  run command below
+```bash
+./vendor/bin/sail php artisan env:encrypt --env=your_env_name --key=your_key
+```
+or
+```bash
+php artisan env:encrypt --env=your_env_name --key=your_key
+```
+EX: In order to decrypt staging env, get the key from file `staging.key` and run command below
+```bash
+./vendor/bin/sail php artisan env:encrypt --env=staging --key=1234567890
+```
+
+
+## API HealthCheck
+View in the browser on (replace the 3000 with your port)
+```
+http://localhost:3000/api/health-check/
+```
+## API documents
+View in the browser on (replace the 3000 with your port)
+```
+http://localhost:3000/request-docs/
+```
+
+## Localization
+- To using localization, attach the locale name in `Accept-Language` header in every request. Supporting locales are `en`(English) and `ja` (Japanese)
+
+## Throttler
+- Currently, the APIs have Rate Limit at 60 requests/min, calculating by IP (Anonymous) and by ID (Authenticated User)
+- Official Docs https://laravel.com/docs/10.x/routing#rate-limiting
+
+
+## Rollbar
+- Rollbar Token is set at key `ROLLBAR_TOKEN`, with level log as `debug`.
+- Will be conditional load for each env that input on the Studio. Implement at `app/Providers/AppServiceProvider.php`
+- Logging config at `config/logging.php`
+- Validate Project Key
+    - Via artisan (sail)
+      ```bash
+      ./vendor/bin/sail php artisan rollbar:validate-key 
+      ```
+    - or via composer (sail)
+      ```bash
+      ./vendor/bin/sail composer additional-commands
+      ```
+- For more details please check the Official Docs https://docs.rollbar.com/docs/laravel
+
+## Scout APM
+- SCOUT KEY is set at key `SCOUT_KEY`, with level log as `info`. You could change it by adding `SCOUT_LOG_LEVEL` to your env. Check official docs for more details https://scoutapm.com/docs/php/configuration
+- Will be conditional load for each env that input on the Studio. Implement at `app/Providers/AppServiceProvider.php`
+- More config could be done by publishing Scout config:
+```bash
+  php artisan vendor:publish --provider="Scoutapm\Laravel\Providers\ScoutApmServiceProvider"  
+```
+
+- For more details please check the Official Docs https://scoutapm.com/docs/php/laravel
 ### Requirement
 - PHP 8.2
 - Composer ^2.4
@@ -120,62 +179,4 @@ php artisan env:decrypt --env=your_env_name --key=your_key
 
 EX: In order to decrypt staging env, get the key from file `staging.key` and run command below
 ```bash
-./vendor/bin/sail php artisan env:decrypt --env=staging --key=1234567890
-```
-- In order to encrypt env, please get the key from {your_env_name}.key file and  run command below
-```bash
-./vendor/bin/sail php artisan env:encrypt --env=your_env_name --key=your_key
-```
-or
-```bash
-php artisan env:encrypt --env=your_env_name --key=your_key
-```
-EX: In order to decrypt staging env, get the key from file `staging.key` and run command below
-```bash
-./vendor/bin/sail php artisan env:encrypt --env=staging --key=1234567890
-```
-
-
-## API HealthCheck
-View in the browser on (replace the 3000 with your port)
-```
-http://localhost:3000/api/health-check/
-```
-## API documents
-View in the browser on (replace the 3000 with your port)
-```
-http://localhost:3000/request-docs/
-```
-
-## Localization
-- To using localization, attach the locale name in `Accept-Language` header in every request. Supporting locales are `en`(English) and `ja` (Japanese)
-
-## Throttler
-- Currently, the APIs have Rate Limit at 60 requests/min, calculating by IP (Anonymous) and by ID (Authenticated User)
-- Official Docs https://laravel.com/docs/10.x/routing#rate-limiting
-
-
-## Rollbar
-- Rollbar Token is set at key `ROLLBAR_TOKEN`, with level log as `debug`.
-- Will be conditional load for each env that input on the Studio. Implement at `app/Providers/AppServiceProvider.php`
-- Logging config at `config/logging.php`
-- Validate Project Key
-    - Via artisan (sail)
-      ```bash
-      ./vendor/bin/sail php artisan rollbar:validate-key 
-      ```
-    - or via composer (sail)
-      ```bash
-      ./vendor/bin/sail composer additional-commands
-      ```
-- For more details please check the Official Docs https://docs.rollbar.com/docs/laravel
-
-## Scout APM
-- SCOUT KEY is set at key `SCOUT_KEY`, with level log as `info`. You could change it by adding `SCOUT_LOG_LEVEL` to your env. Check official docs for more details https://scoutapm.com/docs/php/configuration
-- Will be conditional load for each env that input on the Studio. Implement at `app/Providers/AppServiceProvider.php`
-- More config could be done by publishing Scout config:
-```bash
-  php artisan vendor:publish --provider="Scoutapm\Laravel\Providers\ScoutApmServiceProvider"  
-```
-
-- For more details please check the Official Docs https://scoutapm.com/docs/php/laravel
+./vendor/bin/sail php artisan env:decrypt --env=staging --key=

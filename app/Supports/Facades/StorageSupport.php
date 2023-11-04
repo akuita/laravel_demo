@@ -1,13 +1,4 @@
-<?php
-
-namespace App\Supports\Facades;
-
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
-
-class StorageSupport
-{
-    public function __construct($type = null)
+on __construct($type = null)
     {
         $this->type = empty($type) ? config('filesystems.default') : $type;
     }
@@ -68,3 +59,13 @@ class StorageSupport
         };
     }
 }
+<?php
+
+namespace App\Supports\Facades;
+
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+
+class StorageSupport
+{
+    public functi

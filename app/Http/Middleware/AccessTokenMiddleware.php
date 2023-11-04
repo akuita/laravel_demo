@@ -1,11 +1,4 @@
-<?php
-
-namespace App\Http\Middleware;
-
-use Closure;
-use Illuminate\Http\Request;
-
-class AccessTokenMiddleware
+Middleware
 {
     public function handle(Request $request, Closure $next)
     {
@@ -24,3 +17,11 @@ class AccessTokenMiddleware
         return $next($request);
     }
 }
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+
+class AccessToken

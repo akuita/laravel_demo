@@ -1,18 +1,4 @@
-<?php
-
-use App\Http\Controllers\Api\ArticleController;
-use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\HealthCheckController;
-use App\Http\Controllers\Api\UserController;
-use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
+ by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
@@ -40,3 +26,18 @@ Route::controller(UserController::class)->as('user.')->group(function () {
 Route::controller(ArticleController::class)->as('article.')->group(function () {
     Route::get('/articles', 'filter')->name('filter');
 });
+<?php
+
+use App\Http\Controllers\Api\ArticleController;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\HealthCheckController;
+use App\Http\Controllers\Api\UserController;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded

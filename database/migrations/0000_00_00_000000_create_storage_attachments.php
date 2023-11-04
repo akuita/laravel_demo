@@ -1,8 +1,4 @@
-<?php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+\Schema;
 
 return new class extends Migration
 {
@@ -41,3 +37,8 @@ return new class extends Migration
         Schema::dropIfExists('storage_attachments');
     }
 };
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades

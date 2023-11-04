@@ -1,3 +1,13 @@
+IamRoleArnParameter
+      LoggingLevel: !Ref LoggingLevelParameter
+      SlackChannelId: !Ref SlackChannelIdParameter
+      SlackWorkspaceId: !Ref SlackWorkspaceIdParameter
+      SnsTopicArns: !Ref SnsTopicArnsParameter
+
+Outputs:
+  ConfigurationArn:
+    Description: The ARN of the Chatbot Slack configuration
+    Value: !Ref SlackChannelConfiguration
 AWSTemplateFormatVersion: "2010-09-09"
 Description: AWS Chatbot Configuration
 Parameters:
@@ -29,13 +39,4 @@ Resources:
     Type: AWS::Chatbot::SlackChannelConfiguration
     Properties:
       ConfigurationName: !Ref ConfigurationNameParameter
-      IamRoleArn: !Ref IamRoleArnParameter
-      LoggingLevel: !Ref LoggingLevelParameter
-      SlackChannelId: !Ref SlackChannelIdParameter
-      SlackWorkspaceId: !Ref SlackWorkspaceIdParameter
-      SnsTopicArns: !Ref SnsTopicArnsParameter
-
-Outputs:
-  ConfigurationArn:
-    Description: The ARN of the Chatbot Slack configuration
-    Value: !Ref SlackChannelConfiguration
+      IamRoleArn: !Ref 

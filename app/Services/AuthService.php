@@ -1,3 +1,37 @@
+eate($input['user']);
+        event(new Registered($user));
+
+        return ['id' => $user->id];
+    }
+
+    public function changePassword(array $input, string $provider)
+    {
+        $user = auth($provider)->user();
+
+        if (! Hash::check($input['old_password'], $user->encrypted_password)) {
+            throw new BadRequestHttpException(__('passwords.password_invalid'));
+        }
+
+        $user->fill(['encrypted_password' => Hash::make($input['new_password'])])->save();
+
+        return ['success' => true];
+    }
+
+    public function unlock(array $input, string $provider)
+    {
+        $model = BaseService::getAuthModelFromProvider($provider);
+
+        $authUser = $model::where('unlock_token', '=', $input['unlock_token'])->first();
+
+        if (! $authUser) {
+            throw new BadRequestHttpException(__('passwords.token_invalid'));
+        }
+
+        $authUser->releaseLock();
+
+        return ['success' => true];
+    }
+}
 <?php
 
 namespace App\Services;
@@ -54,37 +88,4 @@ class AuthService extends BaseService
 
     public function userEmailRegistration(array $input)
     {
-        $user = User::create($input['user']);
-        event(new Registered($user));
-
-        return ['id' => $user->id];
-    }
-
-    public function changePassword(array $input, string $provider)
-    {
-        $user = auth($provider)->user();
-
-        if (! Hash::check($input['old_password'], $user->encrypted_password)) {
-            throw new BadRequestHttpException(__('passwords.password_invalid'));
-        }
-
-        $user->fill(['encrypted_password' => Hash::make($input['new_password'])])->save();
-
-        return ['success' => true];
-    }
-
-    public function unlock(array $input, string $provider)
-    {
-        $model = BaseService::getAuthModelFromProvider($provider);
-
-        $authUser = $model::where('unlock_token', '=', $input['unlock_token'])->first();
-
-        if (! $authUser) {
-            throw new BadRequestHttpException(__('passwords.token_invalid'));
-        }
-
-        $authUser->releaseLock();
-
-        return ['success' => true];
-    }
-}
+        $user = User::cr

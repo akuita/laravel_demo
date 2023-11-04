@@ -1,4 +1,4 @@
-<?php
+p
 
 namespace App\Notifications\Auth;
 
@@ -45,3 +45,4 @@ class ResetPasswordNotification extends ResetPassword implements ShouldQueue
         return config("auth.passwords.$guard.reset_password_url")."?token=$token";
     }
 }
+<?ph
