@@ -1,3 +1,51 @@
+        return null;
+            }
+            $this->fireAttemptLockEvent($provider, $user);
+            $this->fireValidatedEvent($provider, $user);
+            $this->fireLoginEvent($provider, $user);
+            $this->fireAuthenticatedEvent($provider, $user);
+
+            return new User($user->getAuthIdentifier());
+        }
+
+        if (method_exists($model, 'findForPassport')) {
+            $user = (new $model)->findForPassport($username);
+        } else {
+            $user = (new $model)->where('email', $username)->first();
+        }
+
+        if (! $user) {
+            $this->fireFailedEvent($provider, $user, $credentials);
+
+            return null;
+        }
+
+        $this->fireAttemptLockEvent($provider, $user);
+
+        if (method_exists($user, 'validateForPassportPasswordGrant')) {
+            if (! $user->validateForPassportPasswordGrant($password)) {
+                $this->fireFailedEvent($provider, $user, $credentials);
+
+                return null;
+            }
+        }
+
+        if (! Hash::check($password, $user->getAuthPassword())) {
+            $this->fireFailedEvent($provider, $user, $credentials);
+
+            return null;
+        }
+
+        $current_user = (new $model())->find($user->getAuthIdentifier());
+        auth($provider)->setUser($current_user);
+
+        $this->fireValidatedEvent($provider, $user);
+        $this->fireLoginEvent($provider, $user);
+        $this->fireAuthenticatedEvent($provider, $user);
+
+        return new User($user->getAuthIdentifier());
+    }
+}
 <?php
 
 namespace App\OAuthGrants;
@@ -110,51 +158,4 @@ class MultipleAuthPasswordGrant extends PasswordGrant
             if (! $user) {
                 $this->fireFailedEvent($provider, $user, $credentials);
 
-                return null;
-            }
-            $this->fireAttemptLockEvent($provider, $user);
-            $this->fireValidatedEvent($provider, $user);
-            $this->fireLoginEvent($provider, $user);
-            $this->fireAuthenticatedEvent($provider, $user);
-
-            return new User($user->getAuthIdentifier());
-        }
-
-        if (method_exists($model, 'findForPassport')) {
-            $user = (new $model)->findForPassport($username);
-        } else {
-            $user = (new $model)->where('email', $username)->first();
-        }
-
-        if (! $user) {
-            $this->fireFailedEvent($provider, $user, $credentials);
-
-            return null;
-        }
-
-        $this->fireAttemptLockEvent($provider, $user);
-
-        if (method_exists($user, 'validateForPassportPasswordGrant')) {
-            if (! $user->validateForPassportPasswordGrant($password)) {
-                $this->fireFailedEvent($provider, $user, $credentials);
-
-                return null;
-            }
-        }
-
-        if (! Hash::check($password, $user->getAuthPassword())) {
-            $this->fireFailedEvent($provider, $user, $credentials);
-
-            return null;
-        }
-
-        $current_user = (new $model())->find($user->getAuthIdentifier());
-        auth($provider)->setUser($current_user);
-
-        $this->fireValidatedEvent($provider, $user);
-        $this->fireLoginEvent($provider, $user);
-        $this->fireAuthenticatedEvent($provider, $user);
-
-        return new User($user->getAuthIdentifier());
-    }
-}
+        

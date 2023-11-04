@@ -1,3 +1,62 @@
+password reset configurations if you have more
+    | than one user table or model in the application and you want to have
+    | separate password reset settings based on the specific user types.
+    |
+    | The expire time is the number of minutes that each reset token will be
+    | considered valid. This security feature keeps tokens short-lived so
+    | they have less time to be guessed. You may change this as needed.
+    |
+    */
+
+    'passwords' => [
+        'users' => [
+            'provider' => 'users',
+            'table' => 'users',
+            'expire' => 60,
+            'throttle' => 60,
+            'reset_password_url' => env('RESET_PASSWORD_URL', 'http//localhost:8080/reset-password'),
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Password Confirmation Timeout
+    |--------------------------------------------------------------------------
+    |
+    | Here you may define the amount of seconds before a password confirmation
+    | times out and the user is prompted to re-enter their password via the
+    | confirmation screen. By default, the timeout lasts for three hours.
+    |
+    */
+
+    'password_timeout' => 10800,
+
+    'password_pattern' => '\A(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}\z',
+
+    'verification' => [
+        'users' => [
+            'verification_url' => env('VERIFICATION_URL', 'http//localhost:8080/verify'),
+            'expire' => 60,
+            'enable' => true,
+        ],
+    ],
+
+    'limiter' => [
+        'users' => [
+            'unlock_strategy' => \App\Constants\UnlockStrategy::UNLOCK_STRATEGY_TIME,
+            'max_attempts' => 10,
+            'unlock_in' => 360,
+            'unlock_url' => env('UNLOCK_URL', 'http//localhost:8080/unlock'),
+        ],
+    ],
+    'methods' => [
+        'email' => [
+            'users' => [
+                'provider' => 'users',
+            ],
+        ],
+    ],
+];
 <?php
 
 return [
@@ -72,62 +131,4 @@ return [
     | Resetting Passwords
     |--------------------------------------------------------------------------
     |
-    | You may specify multiple password reset configurations if you have more
-    | than one user table or model in the application and you want to have
-    | separate password reset settings based on the specific user types.
-    |
-    | The expire time is the number of minutes that each reset token will be
-    | considered valid. This security feature keeps tokens short-lived so
-    | they have less time to be guessed. You may change this as needed.
-    |
-    */
-
-    'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table' => 'users',
-            'expire' => 60,
-            'throttle' => 60,
-            'reset_password_url' => env('RESET_PASSWORD_URL', 'http//localhost:8080/reset-password'),
-        ],
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Password Confirmation Timeout
-    |--------------------------------------------------------------------------
-    |
-    | Here you may define the amount of seconds before a password confirmation
-    | times out and the user is prompted to re-enter their password via the
-    | confirmation screen. By default, the timeout lasts for three hours.
-    |
-    */
-
-    'password_timeout' => 10800,
-
-    'password_pattern' => '\A(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}\z',
-
-    'verification' => [
-        'users' => [
-            'verification_url' => env('VERIFICATION_URL', 'http//localhost:8080/verify'),
-            'expire' => 60,
-            'enable' => true,
-        ],
-    ],
-
-    'limiter' => [
-        'users' => [
-            'unlock_strategy' => \App\Constants\UnlockStrategy::UNLOCK_STRATEGY_TIME,
-            'max_attempts' => 10,
-            'unlock_in' => 360,
-            'unlock_url' => env('UNLOCK_URL', 'http//localhost:8080/unlock'),
-        ],
-    ],
-    'methods' => [
-        'email' => [
-            'users' => [
-                'provider' => 'users',
-            ],
-        ],
-    ],
-];
+    | You may specify multiple 

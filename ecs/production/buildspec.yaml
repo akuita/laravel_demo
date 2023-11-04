@@ -1,6 +1,4 @@
-version: 0.2
-env:
-  variables:
+bles:
     IMAGE_NAME: "gtmi_demo_production"
   parameter-store:
     docker_username: "/gtmi_demo_production/docker_username"
@@ -54,3 +52,6 @@ artifacts:
     - imageDetail.json
     - ecs/production/taskdef.json
     - ecs/production/appspec.yaml
+version: 0.2
+env:
+  varia

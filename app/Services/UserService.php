@@ -1,19 +1,4 @@
-<?php
-
-namespace App\Services;
-
-use App\Models\User;
-
-class UserService extends BaseService
-{
-    public function __construct()
-    {
-    }
-
-    public function filter(array $queries)
-    {
-        $queryBuilder = User::buildFilter([
-            ['where', 'name', 'startWith', data_get($queries, 'users.name')],
+$queries, 'users.name')],
             ['orWhere', 'email', 'startWith', data_get($queries, 'users.email')],
 
         ]);
@@ -64,3 +49,19 @@ class UserService extends BaseService
         ])->delete();
     }
 }
+<?php
+
+namespace App\Services;
+
+use App\Models\User;
+
+class UserService extends BaseService
+{
+    public function __construct()
+    {
+    }
+
+    public function filter(array $queries)
+    {
+        $queryBuilder = User::buildFilter([
+            ['where', 'name', 'startWith', data_get(

@@ -1,3 +1,7 @@
+s:
+    - imageDetail.json
+    - ecs/development/taskdef.json
+    - ecs/development/appspec.yaml
 version: 0.2
 env:
   variables:
@@ -50,7 +54,4 @@ phases:
       - echo ----End Worker Force Deploy with new image ---
 
 artifacts:
-  files:
-    - imageDetail.json
-    - ecs/development/taskdef.json
-    - ecs/development/appspec.yaml
+  file

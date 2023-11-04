@@ -1,3 +1,16 @@
+    'users.name' => 'required|string|max:255|min:0',
+            'users.email' => "required|string|email|unique:users,email,{$this->id}",
+        ];
+    }
+
+    protected function passedValidation()
+    {
+        $this->replace([
+            'name' => $this->string('users.name'),
+            'email' => $this->string('users.email'),
+        ]);
+    }
+}
 <?php
 
 namespace App\Http\Requests\User;
@@ -14,16 +27,4 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'users.name' => 'required|string|max:255|min:0',
-            'users.email' => "required|string|email|unique:users,email,{$this->id}",
-        ];
-    }
-
-    protected function passedValidation()
-    {
-        $this->replace([
-            'name' => $this->string('users.name'),
-            'email' => $this->string('users.email'),
-        ]);
-    }
-}
+        

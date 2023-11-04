@@ -1,3 +1,13 @@
+log',
+        ],
+
+        'null' => [
+            'driver' => 'null',
+        ],
+
+    ],
+
+];
 <?php
 
 return [
@@ -58,13 +68,4 @@ return [
         ],
 
         'log' => [
-            'driver' => 'log',
-        ],
-
-        'null' => [
-            'driver' => 'null',
-        ],
-
-    ],
-
-];
+            'driver' => '

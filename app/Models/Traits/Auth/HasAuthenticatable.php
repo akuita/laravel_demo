@@ -1,9 +1,4 @@
-<?php
-
-namespace App\Models\Traits\Auth;
-
-use App\Notifications\Auth\ResetPasswordNotification;
-use App\Notifications\Auth\VerifyEmailNotification;
+VerifyEmailNotification;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -78,3 +73,9 @@ trait HasAuthenticatable
         });
     }
 }
+<?php
+
+namespace App\Models\Traits\Auth;
+
+use App\Notifications\Auth\ResetPasswordNotification;
+use App\Notifications\Auth\

@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Models;
+ce App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -32,3 +30,6 @@ class StorageAttachment extends Model
         return StorageSupport::get($this->filename);
     }
 }
+<?php
+
+namespa

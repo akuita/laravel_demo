@@ -1,3 +1,6 @@
+> true];
+    }
+}
 <?php
 
 namespace App\Http\Resources;
@@ -8,6 +11,4 @@ class BaseJsonResource extends JsonResource
 {
     public function with($request)
     {
-        return ['success' => true];
-    }
-}
+        return ['success' =

@@ -1,3 +1,16 @@
+$model->getTable()}.expire", 30));
+
+        return ! now()->isAfter($tokenExpireTime);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getIdentifier()
+    {
+        return 'verified_email_grant';
+    }
+}
 <?php
 
 namespace App\OAuthGrants;
@@ -117,16 +130,4 @@ class VerifiedEmailGrant extends AbstractGrant
     protected function verifyConfirmationTokenExpired($model)
     {
         $tokenExpireTime = $model->confirmation_sent_at
-            ->addMinutes(config("auth.verification.{$model->getTable()}.expire", 30));
-
-        return ! now()->isAfter($tokenExpireTime);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getIdentifier()
-    {
-        return 'verified_email_grant';
-    }
-}
+            ->addMinutes(config("auth.verification.{

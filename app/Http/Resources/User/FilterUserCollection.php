@@ -1,3 +1,18 @@
+Array($request)
+    {
+        return $this->collection->map(function ($item) {
+            return [
+                'id' => $item->id,
+                'created_at' => $item->created_at,
+                'updated_at' => $item->updated_at,
+                'name' => $item->name,
+                'email' => $item->email,
+                'password' => $item->password,
+
+            ];
+        })->all();
+    }
+}
 <?php
 
 namespace App\Http\Resources\User;
@@ -22,18 +37,4 @@ class FilterUserCollection extends BaseJsonCollection
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    public function toArray($request)
-    {
-        return $this->collection->map(function ($item) {
-            return [
-                'id' => $item->id,
-                'created_at' => $item->created_at,
-                'updated_at' => $item->updated_at,
-                'name' => $item->name,
-                'email' => $item->email,
-                'password' => $item->password,
-
-            ];
-        })->all();
-    }
-}
+    public function to

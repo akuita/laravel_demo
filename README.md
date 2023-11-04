@@ -1,14 +1,4 @@
-### Requirement
-- PHP 8.2
-- Composer ^2.4
-- Docker
-- Ctype PHP Extension
-- cURL PHP Extension
-- DOM PHP Extension
-- Fileinfo PHP Extension
-- Filter PHP Extension
-- Hash PHP Extension
-- Mbstring PHP Extension
+bstring PHP Extension
 - OpenSSL PHP Extension
 - PCRE PHP Extension
 - PDO PHP Extension
@@ -148,7 +138,17 @@ http://localhost:3000/request-docs/
 ```
 
 ## Localization
-- To using localization, attach the locale name in `Accept-Language` header in every request. Supporting locales are `en`(English) and `ja` (Japanese)
+- To using localization, attach the locale name in `Accept-Language### Requirement
+- PHP 8.2
+- Composer ^2.4
+- Docker
+- Ctype PHP Extension
+- cURL PHP Extension
+- DOM PHP Extension
+- Fileinfo PHP Extension
+- Filter PHP Extension
+- Hash PHP Extension
+- M` header in every request. Supporting locales are `en`(English) and `ja` (Japanese)
 
 ## Throttler
 - Currently, the APIs have Rate Limit at 60 requests/min, calculating by IP (Anonymous) and by ID (Authenticated User)

@@ -1,4 +1,4 @@
-AWSTemplateFormatVersion: "2010-09-09"
+FormatVersion: "2010-09-09"
 Description: AWS Chatbot Configuration
 Parameters:
   ConfigurationNameParameter:
@@ -39,3 +39,4 @@ Outputs:
   ConfigurationArn:
     Description: The ARN of the Chatbot Slack configuration
     Value: !Ref SlackChannelConfiguration
+AWSTemplate

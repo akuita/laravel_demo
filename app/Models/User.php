@@ -1,16 +1,4 @@
-<?php
-
-namespace App\Models;
-
-use App\Models\Traits\Auth\HasAttemptLocked;
-use App\Models\Traits\Auth\HasAuthenticatable;
-use App\Models\Traits\Auth\HasLoginSuccessTrace;
-use App\Models\Traits\FilterQueryBuilder;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Passport\HasApiTokens;
+sport\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -49,3 +37,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Abc::class, 'user_id');
     }
 }
+<?php
+
+namespace App\Models;
+
+use App\Models\Traits\Auth\HasAttemptLocked;
+use App\Models\Traits\Auth\HasAuthenticatable;
+use App\Models\Traits\Auth\HasLoginSuccessTrace;
+use App\Models\Traits\FilterQueryBuilder;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Pas

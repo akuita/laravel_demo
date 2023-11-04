@@ -1,3 +1,22 @@
+();
+        if ($validator->fails()) {
+            throw ValidationException::withMessages($validator->errors()->all());
+        }
+
+        if ($response = $this->attempt($request, $validated_data)) {
+            $response_data = json_decode($response->getContent(), true);
+            $response_data['scope'] = $validated_data['scope'];
+            $response_data['resource_owner'] = $validated_data['scope'];
+            $response_data['resource_id'] = auth($validated_data['scope'])->id();
+            $response_data['created_at'] = now();
+            $response_data['refresh_token_expires_in'] = now()->add(Passport::refreshTokensExpireIn())->diffInSeconds();
+
+            return $response_data;
+        }
+
+        throw new UnauthorizedHttpException('', __('auth.failed'));
+    }
+}
 <?php
 
 namespace App\Http\Controllers\Auth;
@@ -50,22 +69,4 @@ class AccessTokenController extends IssueTokenController
             'client_secret' => 'required',
         ]);
 
-        $validated_data = $validator->validated();
-        if ($validator->fails()) {
-            throw ValidationException::withMessages($validator->errors()->all());
-        }
-
-        if ($response = $this->attempt($request, $validated_data)) {
-            $response_data = json_decode($response->getContent(), true);
-            $response_data['scope'] = $validated_data['scope'];
-            $response_data['resource_owner'] = $validated_data['scope'];
-            $response_data['resource_id'] = auth($validated_data['scope'])->id();
-            $response_data['created_at'] = now();
-            $response_data['refresh_token_expires_in'] = now()->add(Passport::refreshTokensExpireIn())->diffInSeconds();
-
-            return $response_data;
-        }
-
-        throw new UnauthorizedHttpException('', __('auth.failed'));
-    }
-}
+        $validated_data = $validator->validated

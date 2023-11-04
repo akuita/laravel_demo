@@ -1,21 +1,4 @@
-{
-    "family": "laravel",
-    "networkMode": "awsvpc",
-    "taskRoleArn": "arn:aws:iam::677804650362:role/ecs_tasks_gtmi_demo_production",
-    "executionRoleArn": "arn:aws:iam::677804650362:role/ecs_tasks_gtmi_demo_production",
-    
-    "cpu": "1024",
-    "memory": "2048",
-    
-    "requiresCompatibilities": [
-        "FARGATE"
-    ],
-    "containerDefinitions": [
-        {
-            "name": "laravel",
-            "image": "<IMAGE1_NAME>",
-            "essential": true,
-            "command": ["php", "artisan", "serve", "--host", "0.0.0.0", "--port", "3000"],
+", "0.0.0.0", "--port", "3000"],
             "portMappings": [
                 {
                     "protocol": "tcp",
@@ -71,3 +54,21 @@
         }
     ]
 }
+{
+    "family": "laravel",
+    "networkMode": "awsvpc",
+    "taskRoleArn": "arn:aws:iam::677804650362:role/ecs_tasks_gtmi_demo_production",
+    "executionRoleArn": "arn:aws:iam::677804650362:role/ecs_tasks_gtmi_demo_production",
+    
+    "cpu": "1024",
+    "memory": "2048",
+    
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "containerDefinitions": [
+        {
+            "name": "laravel",
+            "image": "<IMAGE1_NAME>",
+            "essential": true,
+            "command": ["php", "artisan", "serve", "--host

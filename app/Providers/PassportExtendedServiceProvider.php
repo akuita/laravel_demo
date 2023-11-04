@@ -1,33 +1,4 @@
-<?php
-
-namespace App\Providers;
-
-use App\Guards\TokenGuard;
-use App\OAuthGrants\MultipleAuthPasswordGrant;
-use App\OAuthGrants\RefreshTokenGrant;
-use Illuminate\Support\Facades\Auth;
-use Laravel\Passport\Bridge\RefreshTokenRepository;
-use Laravel\Passport\Bridge\UserRepository;
-use Laravel\Passport\ClientRepository;
-use Laravel\Passport\Passport;
-use Laravel\Passport\PassportServiceProvider;
-use Laravel\Passport\PassportUserProvider;
-use Laravel\Passport\TokenRepository;
-use League\OAuth2\Server\ResourceServer;
-
-class PassportExtendedServiceProvider extends PassportServiceProvider
-{
-    /**
-     * Create and configure a Password grant instance.
-     *
-     * @return MultipleAuthPasswordGrant
-     */
-    protected function makePasswordGrant()
-    {
-        $grant = new MultipleAuthPasswordGrant(
-            $this->app->make(UserRepository::class),
-            $this->app->make(RefreshTokenRepository::class)
-        );
+;
 
         $grant->setRefreshTokenTTL(Passport::refreshTokensExpireIn());
 
@@ -66,3 +37,33 @@ class PassportExtendedServiceProvider extends PassportServiceProvider
         );
     }
 }
+<?php
+
+namespace App\Providers;
+
+use App\Guards\TokenGuard;
+use App\OAuthGrants\MultipleAuthPasswordGrant;
+use App\OAuthGrants\RefreshTokenGrant;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Passport\Bridge\RefreshTokenRepository;
+use Laravel\Passport\Bridge\UserRepository;
+use Laravel\Passport\ClientRepository;
+use Laravel\Passport\Passport;
+use Laravel\Passport\PassportServiceProvider;
+use Laravel\Passport\PassportUserProvider;
+use Laravel\Passport\TokenRepository;
+use League\OAuth2\Server\ResourceServer;
+
+class PassportExtendedServiceProvider extends PassportServiceProvider
+{
+    /**
+     * Create and configure a Password grant instance.
+     *
+     * @return MultipleAuthPasswordGrant
+     */
+    protected function makePasswordGrant()
+    {
+        $grant = new MultipleAuthPasswordGrant(
+            $this->app->make(UserRepository::class),
+            $this->app->make(RefreshTokenRepository::class)
+        )

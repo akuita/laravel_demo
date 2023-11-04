@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Listeners\Auth;
+ce App\Listeners\Auth;
 
 use App\Events\Auth\AttemptLock;
 
@@ -18,3 +16,6 @@ class CheckLocked
         }
     }
 }
+<?php
+
+namespa

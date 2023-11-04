@@ -1,3 +1,12 @@
+>markEmailAsVerified();
+        event(new Verified($user));
+    }
+
+    public function fireVerifyEmailFailedEvent($guard, $user, $credentials)
+    {
+        event(new VerifyEmailFailed($guard, $user, $credentials));
+    }
+}
 <?php
 
 namespace App\OAuthGrants;
@@ -45,12 +54,4 @@ trait EventFireHelper
 
     public function fireVerifiedEvent($user)
     {
-        $user->markEmailAsVerified();
-        event(new Verified($user));
-    }
-
-    public function fireVerifyEmailFailedEvent($guard, $user, $credentials)
-    {
-        event(new VerifyEmailFailed($guard, $user, $credentials));
-    }
-}
+        $user-

@@ -1,28 +1,4 @@
-version: 0.2
-env:
-  variables:
-    IMAGE_NAME: "gtmi_demo_staging"
-  parameter-store:
-    docker_username: "/gtmi_demo_staging/docker_username"
-    docker_password: "/gtmi_demo_staging/docker_password"
-    subnet: "/gtmi_demo_staging/subnet"
-    security_group: "/gtmi_demo_staging/security_group"
-    master_key: '/gtmi_demo_staging/master_key'
-
-phases:
-  install:
-    runtime-versions:
-      docker: 18
-  pre_build:
-    commands:
-      - echo --- Logging in to Amazon ECR ---
-      - $(aws ecr get-login --no-include-email --region ${AWS_DEFAULT_REGION})
-      - echo --- Setting AWS environments ---
-      - echo --- Docker Login ---
-      - echo $docker_password | docker login --username $docker_username --password-stdin
-      - AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query 'Account' --output text)
-      - URI=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_NAME}
-      - docker pull $URI:laravel || true
+ || true
       - docker pull $URI:latest || true
   build:
     commands:
@@ -54,3 +30,28 @@ artifacts:
     - imageDetail.json
     - ecs/staging/taskdef.json
     - ecs/staging/appspec.yaml
+version: 0.2
+env:
+  variables:
+    IMAGE_NAME: "gtmi_demo_staging"
+  parameter-store:
+    docker_username: "/gtmi_demo_staging/docker_username"
+    docker_password: "/gtmi_demo_staging/docker_password"
+    subnet: "/gtmi_demo_staging/subnet"
+    security_group: "/gtmi_demo_staging/security_group"
+    master_key: '/gtmi_demo_staging/master_key'
+
+phases:
+  install:
+    runtime-versions:
+      docker: 18
+  pre_build:
+    commands:
+      - echo --- Logging in to Amazon ECR ---
+      - $(aws ecr get-login --no-include-email --region ${AWS_DEFAULT_REGION})
+      - echo --- Setting AWS environments ---
+      - echo --- Docker Login ---
+      - echo $docker_password | docker login --username $docker_username --password-stdin
+      - AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query 'Account' --output text)
+      - URI=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_NAME}
+      - docker pull $URI:laravel
